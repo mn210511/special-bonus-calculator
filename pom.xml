@@ -65,7 +65,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.mn210511.specialbonuscalculator/com.mn210511.specialbonuscalculator.HelloApplication
+                                com.mn210511.specialbonuscalculator/com.mn210511.specialbonuscalculator.Main
                             </mainClass>
                         </configuration>
                     </execution>
