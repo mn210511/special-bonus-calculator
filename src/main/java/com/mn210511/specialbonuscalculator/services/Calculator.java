@@ -1,5 +1,7 @@
 package com.mn210511.specialbonuscalculator.services;
 
+import java.util.Arrays;
+
 public class Calculator {
 
     /**
@@ -18,4 +20,11 @@ public class Calculator {
 
    return (hours/yearInDays)*days;
 }
+
+public double sumAverageHours (double ... values) {
+    return Arrays.stream(values).sum();
+}
+
+
+
 }
