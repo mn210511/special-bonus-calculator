@@ -26,5 +26,9 @@ public double sumAverageHours (double ... values) {
 }
 
 
+public double calculateBonus (double salary, double avgHours, double workDaysPerWeek) {
+
+        return (salary/workDaysPerWeek)*avgHours;
+}
 
 }
