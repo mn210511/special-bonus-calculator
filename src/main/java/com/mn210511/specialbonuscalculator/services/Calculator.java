@@ -18,7 +18,7 @@ public class Calculator {
            yearInDays = 365;
        }
 
-   return (hours/yearInDays)*days;
+   return (days/yearInDays)*hours;
 }
 
 public double sumAverageHours (double ... values) {
