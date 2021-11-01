@@ -4,7 +4,7 @@ import com.mn210511.specialbonuscalculator.services.Calculator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class BonusCalculatorController {
     @FXML
     private Label welcomeText;
 
