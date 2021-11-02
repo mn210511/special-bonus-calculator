@@ -51,7 +51,8 @@ public class BonusCalculatorController {
     private VBox vBoxEntrys;
     @FXML
     private HBox hBox1;
-
+    @FXML
+    private Label lblAvg;
     @FXML
     private HBox hBox2;
     @FXML
@@ -117,7 +118,14 @@ public class BonusCalculatorController {
 
         }
 
-    double sumAvbHourValues = calculator.sumAverageHours(avgHourValues);
+        double sumAvbHourValues = calculator.sumAverageHours(avgHourValues);
 
+        double result = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), sumAvbHourValues,
+                cmbWorkModell.getSelectionModel().getSelectedItem());
+        double roundedResult = Math.round(sumAvbHourValues*1000.0)/1000.0;
+        lblAvg.setText(String.valueOf(roundedResult));
+        double roundedBonus = Math.round(result*1000.0)/1000.0;
+
+        lblBonus.setText(String.valueOf(roundedBonus));
     }
 }
