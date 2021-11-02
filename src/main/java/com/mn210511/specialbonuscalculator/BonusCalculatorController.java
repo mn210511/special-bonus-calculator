@@ -8,6 +8,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Stream;
+
 
 public class BonusCalculatorController {
     @FXML
@@ -55,13 +59,14 @@ public class BonusCalculatorController {
     @FXML
     private HBox hBox3;
 
+    Calculator calculator;
     private Node[] hourFields = new Node[12];
     private Node[] dayFields = new Node[12];
 
     public int entryCount = 0;
 
     public void initialize() {
-        Calculator calculator = new Calculator();
+        calculator = new Calculator();
 
         // add all the predefined textfield to the array
         hourFields[entryCount] = txtHours1;
@@ -69,7 +74,7 @@ public class BonusCalculatorController {
         hourFields[++entryCount] = txtHours2;
         dayFields[entryCount] = txtDays2;
 
-cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
+        cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
 
 
     }
@@ -85,18 +90,34 @@ cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
         // a HBox to store the dynamic created textfield
         HBox tmp = new HBox();
         TextField txtHoursTmp = new TextField("0.0");
-        hourFields[++entryCount]=txtHoursTmp;
+        hourFields[++entryCount] = txtHoursTmp;
         TextField txtDaysTmp = new TextField("0.0");
-        dayFields[entryCount]= txtDaysTmp;
+        dayFields[entryCount] = txtDaysTmp;
         tmp.getChildren().addAll(txtHoursTmp, txtDaysTmp);
         vBoxEntrys.getChildren().add(tmp);
 
         // count the rows. we do not want more than 12 rows of entrys
-     if(entryCount==11){
-         btnAddFields.setDisable(true);
-     }
+        if (entryCount == 11) {
+            btnAddFields.setDisable(true);
+        }
 
     }
 
+    @FXML
+    protected void onCalculateBonus() {
+        List<Double> avgHourValues = new LinkedList<>();
+        for (int i = 0; i <= entryCount; i++) {
+            TextField t = (TextField) hourFields[i];
+            System.out.println(t.getText());
+            TextField t2 = (TextField) dayFields[i];
+            System.out.println(t2.getText());
+            System.out.println(cbShiftYear.selectedProperty().get());
+            avgHourValues.add(calculator.averageHours(Double.parseDouble(t.getText()), Integer.parseInt(t2.getText()),
+                    cbShiftYear.selectedProperty().get()));
 
+        }
+
+    double sumAvbHourValues = calculator.sumAverageHours(avgHourValues);
+
+    }
 }
