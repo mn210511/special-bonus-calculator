@@ -63,10 +63,14 @@ public class BonusCalculatorController {
     public void initialize() {
         Calculator calculator = new Calculator();
 
+        // add all the predefined textfield to the array
         hourFields[entryCount] = txtHours1;
         dayFields[entryCount] = txtDays1;
         hourFields[++entryCount] = txtHours2;
         dayFields[entryCount] = txtDays2;
+
+
+
 
     }
 
@@ -78,7 +82,7 @@ public class BonusCalculatorController {
 
     @FXML
     protected void onPlusButtonClick() {
-
+        // a HBox to store the dynamic created textfield
         HBox tmp = new HBox();
         TextField txtHoursTmp = new TextField("0.0");
         hourFields[++entryCount]=txtHoursTmp;
@@ -86,6 +90,8 @@ public class BonusCalculatorController {
         dayFields[entryCount]= txtDaysTmp;
         tmp.getChildren().addAll(txtHoursTmp, txtDaysTmp);
         vBoxEntrys.getChildren().add(tmp);
+
+        // count the rows. we do not want more than 12 rows of entrys
      if(entryCount==11){
          btnAddFields.setDisable(true);
      }
