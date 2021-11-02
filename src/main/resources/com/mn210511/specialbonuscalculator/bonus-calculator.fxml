@@ -63,12 +63,12 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT">
                     <children>
-                        <TextField>
+                        <TextField fx:id="txtHours1">
                             <HBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </HBox.margin>
                         </TextField>
-                        <TextField>
+                        <TextField fx:id="txtDays1">
                             <HBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </HBox.margin>
@@ -77,12 +77,12 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT">
                     <children>
-                        <TextField>
+                        <TextField fx:id="txtHours2">
                             <HBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </HBox.margin>
                         </TextField>
-                        <TextField>
+                        <TextField fx:id="txtDays2">
                             <HBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </HBox.margin>
@@ -106,7 +106,7 @@
                 </Label>
             </children>
         </HBox>
-        <Button fx:id="btnAddFields"  onAction="#onPlusButtonClick" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="+" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Button fx:id="btnAddFields" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onPlusButtonClick" text="+" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <Label text="Gehalt:" GridPane.rowIndex="4" />
       <TextField fx:id="txtSalary" GridPane.columnIndex="1" GridPane.rowIndex="4" />
     </children>
