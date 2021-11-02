@@ -20,7 +20,7 @@ public class BonusCalculatorController {
     private CheckBox cbShiftYear;
 
     @FXML
-    private ComboBox<Boolean> cmbWorkModell;
+    private ComboBox<Double> cmbWorkModell;
 
     @FXML
     private Label lblBonus;
@@ -69,7 +69,7 @@ public class BonusCalculatorController {
         hourFields[++entryCount] = txtHours2;
         dayFields[entryCount] = txtDays2;
 
-
+cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
 
 
     }
