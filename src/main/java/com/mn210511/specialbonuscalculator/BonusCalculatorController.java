@@ -119,12 +119,13 @@ public class BonusCalculatorController {
         }
 
         double sumAvbHourValues = calculator.sumAverageHours(avgHourValues);
+        double roundedAVG = Math.round(sumAvbHourValues*1000.0)/1000.0;
 
-        double result = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), sumAvbHourValues,
+        double bonus = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), sumAvbHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem());
-        double roundedResult = Math.round(sumAvbHourValues*1000.0)/1000.0;
-        lblAvg.setText(String.valueOf(roundedResult));
-        double roundedBonus = Math.round(result*1000.0)/1000.0;
+
+        lblAvg.setText(String.valueOf(roundedAVG));
+        double roundedBonus = Math.round(bonus*1000.0)/1000.0;
 
         lblBonus.setText(String.valueOf(roundedBonus));
     }
