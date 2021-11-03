@@ -4,9 +4,12 @@ import com.mn210511.specialbonuscalculator.services.Calculator;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +20,8 @@ public class BonusCalculatorController {
     @FXML
     private Label welcomeText;
 
+    @FXML
+    private Button btnCopyBonus;
     @FXML
     private Button btnAddFields;
 
@@ -129,4 +134,16 @@ public class BonusCalculatorController {
 
         lblBonus.setText(String.valueOf(roundedBonus));
     }
+
+    @FXML
+    protected void onCopyBonus() {
+       final Clipboard clipboard = Clipboard.getSystemClipboard();
+
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(lblBonus.getText());
+        clipboard.setContent(content);
+
+    }
+
+
 }

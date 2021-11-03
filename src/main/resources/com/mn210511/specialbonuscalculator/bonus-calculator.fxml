@@ -107,6 +107,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                 </Label>
+            <Button fx:id="btnCopyBonus" onAction="#onCopyBonus" mnemonicParsing="false" text="copy" />
             </children>
         </HBox>
         <Button fx:id="btnAddFields" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onPlusButtonClick" text="+" GridPane.columnIndex="1" GridPane.rowIndex="6" />
