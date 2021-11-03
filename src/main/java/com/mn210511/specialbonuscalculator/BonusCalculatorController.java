@@ -1,6 +1,7 @@
 package com.mn210511.specialbonuscalculator;
 
 import com.mn210511.specialbonuscalculator.services.Calculator;
+import com.mn210511.specialbonuscalculator.services.CommaFormatter;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -66,6 +67,7 @@ public class BonusCalculatorController {
     private HBox hBox3;
 
     Calculator calculator;
+    CommaFormatter fmt;
     private Node[] hourFields = new Node[12];
     private Node[] dayFields = new Node[12];
 
@@ -73,6 +75,7 @@ public class BonusCalculatorController {
 
     public void initialize() {
         calculator = new Calculator();
+        fmt = new CommaFormatter();
 
         // add all the predefined textfield to the array
         hourFields[entryCount] = txtHours1;
@@ -129,10 +132,10 @@ public class BonusCalculatorController {
         double bonus = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), sumAvbHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem());
 
-        lblAvg.setText(String.valueOf(roundedAVG));
+        lblAvg.setText(fmt.changeToComma(String.valueOf(roundedAVG)));
         double roundedBonus = Math.round(bonus*1000.0)/1000.0;
 
-        lblBonus.setText(String.valueOf(roundedBonus));
+        lblBonus.setText(fmt.changeToComma(String.valueOf(roundedBonus)));
     }
 
     @FXML
