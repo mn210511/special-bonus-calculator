@@ -11,13 +11,28 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.PopupWindow;
+import javafx.stage.Window;
+import org.apache.pdfbox.contentstream.PDContentStream;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1CFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
 
 public class BonusCalculatorController {
+
     @FXML
     private Label welcomeText;
 
@@ -110,6 +125,7 @@ public class BonusCalculatorController {
             btnAddFields.setDisable(true);
         }
 
+
     }
 
     @FXML
@@ -127,20 +143,61 @@ public class BonusCalculatorController {
         }
 
         double sumAvbHourValues = calculator.sumAverageHours(avgHourValues);
-        double roundedAVG = Math.round(sumAvbHourValues*1000.0)/1000.0;
+        double roundedAVG = Math.round(sumAvbHourValues * 1000.0) / 1000.0;
 
         double bonus = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), sumAvbHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem());
 
         lblAvg.setText(fmt.changeToComma(String.valueOf(roundedAVG)));
-        double roundedBonus = Math.round(bonus*1000.0)/1000.0;
+        double roundedBonus = Math.round(bonus * 1000.0) / 1000.0;
 
         lblBonus.setText(fmt.changeToComma(String.valueOf(roundedBonus)));
+
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+
+        PDRectangle mediabox = page.getMediaBox();
+        document.addPage(page);
+        try {
+            PDPageContentStream stream = new PDPageContentStream(document, page);
+            stream.beginText();
+            stream.setFont(PDType1Font.TIMES_ROMAN, 10);
+           stream.newLineAtOffset(0, 25);
+
+            stream.showText("TESt /n TEst");
+
+
+            stream.endText();
+            stream.moveTo(mediabox.getLowerLeftX(), mediabox.getLowerLeftY());
+            stream.lineTo(mediabox.getUpperRightX(), mediabox.getUpperRightY());
+            stream.stroke();
+            stream.close();
+
+
+
+
+        } catch (IOException e){
+            System.err.println(e.getMessage());
+        }
+
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("save PDF");
+        Window w = new PopupWindow() {
+        };
+        File file = fileChooser.showSaveDialog(w);
+        try {
+            document.save(file);
+            document.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @FXML
     protected void onCopyBonus() {
-       final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
 
         final ClipboardContent content = new ClipboardContent();
         content.putString(lblBonus.getText());

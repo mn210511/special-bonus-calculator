@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="mainGrid" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mn210511.specialbonuscalculator.BonusCalculatorController">
+<GridPane fx:id="mainGrid" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mn210511.specialbonuscalculator.BonusCalculatorController">
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -107,7 +107,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                 </Label>
-            <Button fx:id="btnCopyBonus" onAction="#onCopyBonus" mnemonicParsing="false" text="copy" />
+            <Button fx:id="btnCopyBonus" mnemonicParsing="false" onAction="#onCopyBonus" text="copy" />
             </children>
         </HBox>
         <Button fx:id="btnAddFields" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onPlusButtonClick" text="+" GridPane.columnIndex="1" GridPane.rowIndex="6" />
