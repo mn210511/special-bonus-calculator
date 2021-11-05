@@ -6,10 +6,20 @@ package com.mn210511.specialbonuscalculator.entities;
 public class Worktime {
     double hoursPerWeek;
     int duration;
+    double average;
 
-    public Worktime(double hoursPerWeek, int duration) {
+    public Worktime(double hoursPerWeek, int duration, double average) {
         this.hoursPerWeek = hoursPerWeek;
         this.duration = duration;
+        this.average = average;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
+    public void setAverage(double average) {
+        this.average = average;
     }
 
     public double getHoursPerWeek() {

@@ -81,6 +81,8 @@ public class BonusCalculatorController {
     @FXML
     private HBox hBox3;
 
+    private Record;
+
     Calculator calculator;
     CommaFormatter fmt;
     private Node[] hourFields = new Node[12];
@@ -131,6 +133,8 @@ public class BonusCalculatorController {
     @FXML
     protected void onCalculateBonus() {
         List<Double> avgHourValues = new LinkedList<>();
+
+
         for (int i = 0; i <= entryCount; i++) {
             TextField t = (TextField) hourFields[i];
             System.out.println(t.getText());
