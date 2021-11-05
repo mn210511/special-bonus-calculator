@@ -1,5 +1,7 @@
 package com.mn210511.specialbonuscalculator;
 
+import com.mn210511.specialbonuscalculator.entities.Record;
+import com.mn210511.specialbonuscalculator.entities.Worktime;
 import com.mn210511.specialbonuscalculator.services.Calculator;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
 import javafx.fxml.FXML;
@@ -81,7 +83,7 @@ public class BonusCalculatorController {
     @FXML
     private HBox hBox3;
 
-    private Record;
+    private Record record;
 
     Calculator calculator;
     CommaFormatter fmt;
@@ -132,8 +134,10 @@ public class BonusCalculatorController {
 
     @FXML
     protected void onCalculateBonus() {
-        List<Double> avgHourValues = new LinkedList<>();
+        record = new Record("Com", txtName.getText(), cbShiftYear.isSelected(), Double.parseDouble(txtSalary.getText()));
 
+        List<Double> avgHourValues = new LinkedList<>();
+        List<Worktime> worktimes = new LinkedList<>();
 
         for (int i = 0; i <= entryCount; i++) {
             TextField t = (TextField) hourFields[i];
@@ -141,21 +145,24 @@ public class BonusCalculatorController {
             TextField t2 = (TextField) dayFields[i];
             System.out.println(t2.getText());
             System.out.println(cbShiftYear.selectedProperty().get());
-            avgHourValues.add(calculator.averageHours(Double.parseDouble(t.getText()), Integer.parseInt(t2.getText()),
-                    cbShiftYear.selectedProperty().get()));
+
+            Worktime tmp = new Worktime(Double.parseDouble(t.getText()), Integer.parseInt(t2.getText()));
+            tmp.setAverage(calculator.averageHours(tmp.getHoursPerWeek(), tmp.getDuration(), record.isShiftyear()));
+            worktimes.add(tmp);
+            avgHourValues.add(tmp.getAverage());
 
         }
+        record.setWorktimes(worktimes);
+        double summedAvgHourValues = calculator.sumAverageHours(avgHourValues);
+        record.setAverage(Math.round(summedAvgHourValues * 1000.0) / 1000.0);
 
-        double sumAvbHourValues = calculator.sumAverageHours(avgHourValues);
-        double roundedAVG = Math.round(sumAvbHourValues * 1000.0) / 1000.0;
-
-        double bonus = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), sumAvbHourValues,
+        double bonus = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), summedAvgHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem());
 
-        lblAvg.setText(fmt.changeToComma(String.valueOf(roundedAVG)));
-        double roundedBonus = Math.round(bonus * 1000.0) / 1000.0;
+        lblAvg.setText(fmt.changeToComma(String.valueOf(record.getAverage())));
+        record.setBonus(Math.round(bonus * 1000.0) / 1000.0);
 
-        lblBonus.setText(fmt.changeToComma(String.valueOf(roundedBonus)));
+        lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
 
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
@@ -166,7 +173,7 @@ public class BonusCalculatorController {
             PDPageContentStream stream = new PDPageContentStream(document, page);
             stream.beginText();
             stream.setFont(PDType1Font.TIMES_ROMAN, 10);
-           stream.newLineAtOffset(0, 25);
+            stream.newLineAtOffset(0, 25);
 
             stream.showText("TESt /n TEst");
 
@@ -178,9 +185,7 @@ public class BonusCalculatorController {
             stream.close();
 
 
-
-
-        } catch (IOException e){
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
 

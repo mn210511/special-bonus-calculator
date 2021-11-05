@@ -8,10 +8,9 @@ public class Worktime {
     int duration;
     double average;
 
-    public Worktime(double hoursPerWeek, int duration, double average) {
+    public Worktime(double hoursPerWeek, int duration) {
         this.hoursPerWeek = hoursPerWeek;
         this.duration = duration;
-        this.average = average;
     }
 
     public double getAverage() {

@@ -14,14 +14,17 @@ public class Record {
     boolean shiftyear;
     double average;
     double bonus;
+    double salary;
 
-    public Record(String company, String employee, List<Worktime> worktimes, boolean shiftyear, double average, double bonus) {
+    public Record(String company, String employee, boolean shiftyear, double salary) {
         this.company = company;
         this.employee = employee;
-        this.worktimes = worktimes;
         this.shiftyear = shiftyear;
-        this.average = average;
-        this.bonus = bonus;
+        this.salary = salary;
+    }
+
+    public Record(){
+
     }
 
     public String getCompany() {
