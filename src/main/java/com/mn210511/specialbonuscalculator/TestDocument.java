@@ -1,5 +1,6 @@
 package com.mn210511.specialbonuscalculator;
 
+import com.mn210511.specialbonuscalculator.entities.Record;
 import javafx.stage.FileChooser;
 import javafx.stage.PopupWindow;
 import javafx.stage.Window;
@@ -15,7 +16,10 @@ import java.io.IOException;
 
 public class TestDocument {
 
+   ;
+
     public static void main(String[] args) {
+        Record testRecord = new Record("MyCompany", "Nicolas Herold", true, 2500.0);
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
 
@@ -56,10 +60,10 @@ public class TestDocument {
            stream.setRenderingMode(RenderingMode.FILL);
             stream.setFont(PDType1Font.TIMES_ROMAN, 18);
             stream.newLineAtOffset(100, 0);
-            stream.showText("hier wird ein Name stehen");
+            stream.showText(testRecord.getEmployee());
             stream.newLineAtOffset(0, +20);
-            stream.showText("hier wird ein Klient stehen");
-    stream.endText();
+            stream.showText(testRecord.getCompany());
+            stream.endText();
 
 
             //drawing the vertical lines

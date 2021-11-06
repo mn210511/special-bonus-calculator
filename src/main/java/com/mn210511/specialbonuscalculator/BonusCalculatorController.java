@@ -83,6 +83,8 @@ public class BonusCalculatorController {
     @FXML
     private HBox hBox3;
 
+    @FXML
+    private TextField txtCompany;
     private Record record;
 
     Calculator calculator;
