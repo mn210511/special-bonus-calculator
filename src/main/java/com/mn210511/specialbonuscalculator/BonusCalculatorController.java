@@ -13,24 +13,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.PopupWindow;
 import javafx.stage.Window;
-import org.apache.pdfbox.contentstream.PDContentStream;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1CFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Stream;
 
 
 public class BonusCalculatorController {
@@ -84,6 +79,18 @@ public class BonusCalculatorController {
     private HBox hBox3;
 
     @FXML
+    private DatePicker dtpBeginn1;
+
+    @FXML
+    private DatePicker dtpBeginn2;
+
+    @FXML
+    private DatePicker dtpEnd1;
+
+    @FXML
+    private DatePicker dtpEnd2;
+
+    @FXML
     private TextField txtCompany;
     private Record record;
 
@@ -91,6 +98,8 @@ public class BonusCalculatorController {
     CommaFormatter fmt;
     private Node[] hourFields = new Node[12];
     private Node[] dayFields = new Node[12];
+    private Node[] beginDates = new Node[12];
+    private Node[] endDates = new Node[12];
 
     public int entryCount = 0;
 
@@ -101,8 +110,13 @@ public class BonusCalculatorController {
         // add all the predefined textfield to the array
         hourFields[entryCount] = txtHours1;
         dayFields[entryCount] = txtDays1;
+        beginDates[entryCount] = dtpBeginn1;
+        endDates[entryCount] = dtpEnd1;
         hourFields[++entryCount] = txtHours2;
         dayFields[entryCount] = txtDays2;
+        beginDates[entryCount] = dtpBeginn2;
+        endDates[entryCount] = dtpEnd2;
+
 
         cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
 
@@ -119,11 +133,15 @@ public class BonusCalculatorController {
     protected void onPlusButtonClick() {
         // a HBox to store the dynamic created textfield
         HBox tmp = new HBox();
+        DatePicker beginTmp = new DatePicker();
+        DatePicker endTMP = new DatePicker();
         TextField txtHoursTmp = new TextField("0.0");
         hourFields[++entryCount] = txtHoursTmp;
         TextField txtDaysTmp = new TextField("0.0");
         dayFields[entryCount] = txtDaysTmp;
-        tmp.getChildren().addAll(txtHoursTmp, txtDaysTmp);
+        tmp.getChildren().addAll(txtHoursTmp, txtDaysTmp, beginTmp, endTMP);
+        endDates[entryCount] = endTMP;
+        beginDates[entryCount] = beginTmp;
         vBoxEntrys.getChildren().add(tmp);
 
         // count the rows. we do not want more than 12 rows of entrys
