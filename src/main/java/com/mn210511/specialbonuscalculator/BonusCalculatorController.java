@@ -24,6 +24,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -161,12 +162,15 @@ public class BonusCalculatorController {
 
         for (int i = 0; i <= entryCount; i++) {
             TextField t = (TextField) hourFields[i];
+            DatePicker p = (DatePicker) beginDates[i];
+            DatePicker pEnd = (DatePicker) endDates[i];
             System.out.println(t.getText());
             TextField t2 = (TextField) dayFields[i];
             System.out.println(t2.getText());
             System.out.println(cbShiftYear.selectedProperty().get());
 
-            Worktime tmp = new Worktime(Double.parseDouble(t.getText()), Integer.parseInt(t2.getText()));
+
+            Worktime tmp = new Worktime(Double.parseDouble(t.getText()), Integer.parseInt(t2.getText()),p.getValue(), pEnd.getValue());
             tmp.setAverage(calculator.averageHours(tmp.getHoursPerWeek(), tmp.getDuration(), record.isShiftyear()));
             worktimes.add(tmp);
             avgHourValues.add(tmp.getAverage());

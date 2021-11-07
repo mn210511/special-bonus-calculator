@@ -31,7 +31,7 @@ public class TestDocument {
         Record testRecord = new Record("MyCompany", "Nicolas Herold", true, 2500.0);
         List<Worktime> worktimes = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
-            Worktime tmp = new Worktime(20.0 + i, i);
+            Worktime tmp = new Worktime(20.0 + i, i, LocalDate.now(), LocalDate.now());
             tmp.setAverage(2000);
             worktimes.add(tmp);
 
@@ -99,12 +99,14 @@ public class TestDocument {
             lineOffset = 230.0f;
 
             // values of the Calculation inside the cells
+            String withoutYear = "dd.MM";
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern(withoutYear);
             for (Worktime w : testRecord.getWorktimes()) {
-                stream.setFont(PDType1Font.COURIER, 15);
+                stream.setFont(PDType1Font.COURIER, 13);
                 stream.setRenderingMode(RenderingMode.FILL);
                 stream.beginText();
                 stream.newLineAtOffset(110, mediabox.getUpperRightY()-lineOffset);
-                stream.showText(String.valueOf(w.getDuration()));
+                stream.showText(fmt.format(w.getBegin()) + " - " + fmt.format(w.getEnd()));
                 stream.newLineAtOffset(100, 0);
                 stream.showText(String.valueOf(w.getHoursPerWeek()));
                 stream.newLineAtOffset(100, 0);
