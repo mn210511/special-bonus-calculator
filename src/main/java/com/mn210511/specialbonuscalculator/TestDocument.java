@@ -58,8 +58,14 @@ public class TestDocument {
 
             //drawing the horizontal lines
             for (int i = 0; i < rows; i++) {
-                xStart = 100.0f;
-                xEnd = xStart + 400.0f;
+                /**
+                 *  xStart = 100.0f;
+                 * xEnd = xStart + 400.0f;
+                 *  yStart = 600.0f;
+                 *  yEnd = 600.0f;
+                 */
+                xStart = 70.0f;
+                xEnd = xStart + 430.0f;
                 yStart = 600.0f;
                 yEnd = 600.0f;
 
@@ -86,14 +92,15 @@ public class TestDocument {
 
             //Headlines
             stream.beginText();
-            stream.newLineAtOffset(110, mediabox.getUpperRightY()-lineOffset);
+            stream.newLineAtOffset(80, mediabox.getUpperRightY()-lineOffset);
+            stream.setFont(PDType1Font.COURIER, 15);
             stream.setRenderingMode(RenderingMode.FILL_STROKE);
             stream.showText("Datum");
-            stream.newLineAtOffset(100, 0);
+            stream.newLineAtOffset(107.3f, 0);
             stream.showText("Stunden");
-            stream.newLineAtOffset(100, 0);
+            stream.newLineAtOffset(107.3f, 0);
             stream.showText("Tage");
-            stream.newLineAtOffset(100, 0);
+            stream.newLineAtOffset(107.3f, 0);
             stream.showText("Schnitt");
             stream.endText();
             lineOffset = 230.0f;
@@ -102,14 +109,14 @@ public class TestDocument {
             String withoutYear = "dd.MM";
             DateTimeFormatter fmt = DateTimeFormatter.ofPattern(withoutYear);
             for (Worktime w : testRecord.getWorktimes()) {
-                stream.setFont(PDType1Font.COURIER, 13);
+                stream.setFont(PDType1Font.COURIER, 12);
                 stream.setRenderingMode(RenderingMode.FILL);
                 stream.beginText();
-                stream.newLineAtOffset(110, mediabox.getUpperRightY()-lineOffset);
+                stream.newLineAtOffset(75, mediabox.getUpperRightY()-lineOffset);
                 stream.showText(fmt.format(w.getBegin()) + " - " + fmt.format(w.getEnd()));
-                stream.newLineAtOffset(100, 0);
+                stream.newLineAtOffset(107.3f, 0);
                 stream.showText(String.valueOf(w.getHoursPerWeek()));
-                stream.newLineAtOffset(100, 0);
+                stream.newLineAtOffset(107.3f, 0);
                 stream.showText((String.valueOf(w.getAverage())));
                 stream.endText();
                 lineOffset -= -20;
@@ -117,9 +124,9 @@ public class TestDocument {
 
             //Bottom line of the table
             stream.beginText();
-            stream.newLineAtOffset(310, mediabox.getUpperRightY()-lineOffset);
+            stream.newLineAtOffset(290, mediabox.getUpperRightY()-lineOffset);
             stream.showText("366");
-            stream.newLineAtOffset(100, 0);
+            stream.newLineAtOffset(107.3f, 0);
             stream.showText(String.valueOf(testRecord.getAverage()));
 
             stream.endText();
@@ -128,18 +135,18 @@ public class TestDocument {
             //Line for the average
             stream.beginText();
             stream.setRenderingMode(RenderingMode.FILL_STROKE);
-            stream.newLineAtOffset(110, mediabox.getUpperRightY()-lineOffset);
+            stream.newLineAtOffset(80, mediabox.getUpperRightY()-lineOffset);
             stream.showText("Schnitt:");
-            stream.newLineAtOffset(300, 0);
+            stream.newLineAtOffset(340, 0);
             stream.showText("90000");
             stream.endText();
 
             //line for the endresult
             lineOffset -= -50;
             stream.beginText();
-            stream.newLineAtOffset(110, mediabox.getUpperRightY()-lineOffset);
+            stream.newLineAtOffset(80, mediabox.getUpperRightY()-lineOffset);
             stream.showText("Sonderzahlung gesamt:");
-            stream.newLineAtOffset(300, 0);
+            stream.newLineAtOffset(340, 0);
             stream.showText(String.valueOf(90000));
             stream.endText();
 
@@ -147,7 +154,7 @@ public class TestDocument {
             int columns = 5;
             xEnd = xStart;
             yEnd = yStart - (rows * gap) + gap;
-            gap = 100.0f;
+            gap = 107.3f;
             for (int i = 0; i < columns; i++) {
 
                 drawLine(stream, xStart + (gap * i), yStart, xEnd + (gap * i), yEnd);
