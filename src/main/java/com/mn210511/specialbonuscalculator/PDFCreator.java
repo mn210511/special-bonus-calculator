@@ -2,6 +2,7 @@ package com.mn210511.specialbonuscalculator;
 
 import com.mn210511.specialbonuscalculator.entities.Record;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
+import com.mn210511.specialbonuscalculator.services.CommaFormatter;
 import javafx.stage.FileChooser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class PDFCreator {
 
+    CommaFormatter commaFormatter = new CommaFormatter();
 
     public static void main(String[] args) {
         PDFCreator test = new PDFCreator();
@@ -128,9 +130,12 @@ public class PDFCreator {
             stream.newLineAtOffset(75, mediabox.getUpperRightY() - lineOffset);
             stream.showText(fmt.format(w.getBegin()) + " - " + fmt.format(w.getEnd()));
             stream.newLineAtOffset(107.3f, 0);
-            stream.showText(String.valueOf(w.getHoursPerWeek()));
+            stream.showText(commaFormatter.changeToComma(String.valueOf(w.getHoursPerWeek())));
             stream.newLineAtOffset(107.3f, 0);
-            stream.showText((String.valueOf(w.getAverage())));
+            stream.showText((String.valueOf(w.getDuration())));
+            stream.newLineAtOffset(107.3f, 0);
+            double roundedAvg = Math.round(w.getAverage() * 1000.0) / 1000.0;
+            stream.showText(commaFormatter.changeToComma(String.valueOf(roundedAvg)));
             stream.endText();
             lineOffset -= -20;
         }
@@ -140,7 +145,7 @@ public class PDFCreator {
         stream.newLineAtOffset(290, mediabox.getUpperRightY() - lineOffset);
         stream.showText(String.valueOf(record.getSummedDays()));
         stream.newLineAtOffset(107.3f, 0);
-        stream.showText(String.valueOf(record.getAverage()));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getAverage())));
 
         stream.endText();
 
@@ -151,7 +156,7 @@ public class PDFCreator {
         stream.newLineAtOffset(80, mediabox.getUpperRightY() - 520);
         stream.showText("Schnitt:");
         stream.newLineAtOffset(320, 0);
-        stream.showText(String.valueOf(record.getAverage()));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getAverage())));
         stream.endText();
 
         //line for the endresult
@@ -160,7 +165,7 @@ public class PDFCreator {
         stream.newLineAtOffset(80, mediabox.getUpperRightY() - 570);
         stream.showText("Sonderzahlung gesamt:");
         stream.newLineAtOffset(320, 0);
-        stream.showText(String.valueOf(record.getBonus()));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getBonus())));
         stream.endText();
 
         //drawing the vertical lines
