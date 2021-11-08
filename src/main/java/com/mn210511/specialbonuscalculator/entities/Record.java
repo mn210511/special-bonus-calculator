@@ -74,4 +74,10 @@ public class Record {
     public void setBonus(double bonus) {
         this.bonus = bonus;
     }
+
+    public int getSummedDays(){
+        int sum = getWorktimes().stream().mapToInt(Worktime::getDuration).sum();
+        
+      return sum;
+    };
 }

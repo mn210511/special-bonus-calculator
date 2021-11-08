@@ -26,7 +26,7 @@ public class PDFCreator {
         Record testRecord = new Record("MyCompany", "Nicolas Herold", true, 2500.0);
         List<Worktime> worktimes = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
-            Worktime tmp = new Worktime(20.0 + i, i, LocalDate.now(), LocalDate.now());
+            Worktime tmp = new Worktime(20.0 + i, 10, LocalDate.now(), LocalDate.now());
             tmp.setAverage(2000);
             worktimes.add(tmp);
 
@@ -138,7 +138,7 @@ public class PDFCreator {
         //Bottom line of the table
         stream.beginText();
         stream.newLineAtOffset(290, mediabox.getUpperRightY() - lineOffset);
-        stream.showText("366");
+        stream.showText(String.valueOf(record.getSummedDays()));
         stream.newLineAtOffset(107.3f, 0);
         stream.showText(String.valueOf(record.getAverage()));
 
