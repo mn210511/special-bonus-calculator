@@ -13,7 +13,20 @@ public class CommaFormatter {
 
 
         String ret = String.valueOf(chars);
-        System.out.println("mit Beistrich " + ret);
+        return ret;
+    }
+
+    public String changeToDot (String text) {
+        char[] chars = text.toCharArray();
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i]==','){
+                chars[i]='.';
+            }
+        }
+
+
+        String ret = String.valueOf(chars);
         return ret;
     }
 

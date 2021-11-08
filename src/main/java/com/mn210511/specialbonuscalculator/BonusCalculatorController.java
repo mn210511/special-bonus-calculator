@@ -156,6 +156,15 @@ public class BonusCalculatorController {
 
     @FXML
     protected void onCalculateBonus() {
+        double salary;
+
+        try {
+            salary = Double.parseDouble(txtSalary.getText());
+        } catch (NumberFormatException e) {
+            salary = Double.parseDouble(fmt.changeToDot(txtSalary.getText()));
+        }
+
+
         record = new Record(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), Double.parseDouble(txtSalary.getText()));
 
         List<Double> avgHourValues = new LinkedList<>();
@@ -169,9 +178,16 @@ public class BonusCalculatorController {
             TextField t2 = (TextField) dayFields[i];
             System.out.println(t2.getText());
             System.out.println(cbShiftYear.selectedProperty().get());
+            double hours;
+            try {
+                hours = Double.parseDouble(t.getText());
+            } catch (NumberFormatException e) {
+                hours = Double.parseDouble(fmt.changeToDot(t.getText()));
+            }
 
 
-            Worktime tmp = new Worktime(Double.parseDouble(t.getText()), Integer.parseInt(t2.getText()),p.getValue(), pEnd.getValue());
+
+            Worktime tmp = new Worktime(hours, Integer.parseInt(t2.getText()),p.getValue(), pEnd.getValue());
             tmp.setAverage(calculator.averageHours(tmp.getHoursPerWeek(), tmp.getDuration(), record.isShiftyear()));
             worktimes.add(tmp);
             avgHourValues.add(tmp.getAverage());
