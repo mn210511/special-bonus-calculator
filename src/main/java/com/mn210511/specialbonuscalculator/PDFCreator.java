@@ -20,7 +20,6 @@ import java.util.List;
 
 public class PDFCreator {
 
-    ;
 
     public static void main(String[] args) {
         PDFCreator test = new PDFCreator();
@@ -54,13 +53,14 @@ public class PDFCreator {
         stream.lineTo(xEnd, yEnd);
         stream.fillAndStroke();
     }
-public void exportFullYearCalculation(Record record, File file) throws IOException {
 
-    PDDocument document = new PDDocument();
-    PDPage page = new PDPage();
+    public void exportFullYearCalculation(Record record, File file) throws IOException {
 
-    PDRectangle mediabox = page.getMediaBox();
-    document.addPage(page);
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+
+        PDRectangle mediabox = page.getMediaBox();
+        document.addPage(page);
 
         PDPageContentStream stream = new PDPageContentStream(document, page);
 
@@ -76,12 +76,7 @@ public void exportFullYearCalculation(Record record, File file) throws IOExcepti
 
         //drawing the horizontal lines
         for (int i = 0; i < rows; i++) {
-            /**
-             *  xStart = 100.0f;
-             * xEnd = xStart + 400.0f;
-             *  yStart = 600.0f;
-             *  yEnd = 600.0f;
-             */
+
             xStart = 70.0f;
             xEnd = xStart + 430.0f;
             yStart = 600.0f;
@@ -110,7 +105,7 @@ public void exportFullYearCalculation(Record record, File file) throws IOExcepti
 
         //Headlines
         stream.beginText();
-        stream.newLineAtOffset(75, mediabox.getUpperRightY()-lineOffset);
+        stream.newLineAtOffset(75, mediabox.getUpperRightY() - lineOffset);
         stream.setFont(PDType1Font.COURIER, 15);
         stream.setRenderingMode(RenderingMode.FILL_STROKE);
         stream.showText("Datum");
@@ -130,7 +125,7 @@ public void exportFullYearCalculation(Record record, File file) throws IOExcepti
             stream.setFont(PDType1Font.COURIER, 12);
             stream.setRenderingMode(RenderingMode.FILL);
             stream.beginText();
-            stream.newLineAtOffset(75, mediabox.getUpperRightY()-lineOffset);
+            stream.newLineAtOffset(75, mediabox.getUpperRightY() - lineOffset);
             stream.showText(fmt.format(w.getBegin()) + " - " + fmt.format(w.getEnd()));
             stream.newLineAtOffset(107.3f, 0);
             stream.showText(String.valueOf(w.getHoursPerWeek()));
@@ -142,7 +137,7 @@ public void exportFullYearCalculation(Record record, File file) throws IOExcepti
 
         //Bottom line of the table
         stream.beginText();
-        stream.newLineAtOffset(290, mediabox.getUpperRightY()-lineOffset);
+        stream.newLineAtOffset(290, mediabox.getUpperRightY() - lineOffset);
         stream.showText("366");
         stream.newLineAtOffset(107.3f, 0);
         stream.showText(String.valueOf(record.getAverage()));
@@ -153,19 +148,19 @@ public void exportFullYearCalculation(Record record, File file) throws IOExcepti
         //Line for the average
         stream.beginText();
         stream.setRenderingMode(RenderingMode.FILL_STROKE);
-        stream.newLineAtOffset(80, mediabox.getUpperRightY()-520);
+        stream.newLineAtOffset(80, mediabox.getUpperRightY() - 520);
         stream.showText("Schnitt:");
         stream.newLineAtOffset(320, 0);
-        stream.showText("90000");
+        stream.showText(String.valueOf(record.getAverage()));
         stream.endText();
 
         //line for the endresult
 
         stream.beginText();
-        stream.newLineAtOffset(80, mediabox.getUpperRightY()-570);
+        stream.newLineAtOffset(80, mediabox.getUpperRightY() - 570);
         stream.showText("Sonderzahlung gesamt:");
         stream.newLineAtOffset(320, 0);
-        stream.showText(String.valueOf(90000));
+        stream.showText(String.valueOf(record.getBonus()));
         stream.endText();
 
         //drawing the vertical lines
@@ -193,7 +188,7 @@ public void exportFullYearCalculation(Record record, File file) throws IOExcepti
         stream.beginText();
         stream.setRenderingMode(RenderingMode.FILL);
         stream.setFont(PDType1Font.TIMES_ROMAN, 15);
-        stream.newLineAtOffset(mediabox.getUpperRightX()-150, mediabox.getLowerLeftY()+20);
+        stream.newLineAtOffset(mediabox.getUpperRightX() - 150, mediabox.getLowerLeftY() + 20);
 
         stream.showText("Erstellt am " + DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(LocalDate.now()));
         stream.endText();
@@ -204,8 +199,8 @@ public void exportFullYearCalculation(Record record, File file) throws IOExcepti
 
         stream.close();
 
-    document.save(file);
-    document.close();
+        document.save(file);
+        document.close();
 
     }
 }

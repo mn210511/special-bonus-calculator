@@ -94,6 +94,7 @@ public class BonusCalculatorController {
     @FXML
     private TextField txtCompany;
     private Record record;
+    private PDFCreator pdfCreator = new PDFCreator();
 
     Calculator calculator;
     CommaFormatter fmt;
@@ -155,7 +156,7 @@ public class BonusCalculatorController {
 
     @FXML
     protected void onCalculateBonus() {
-        record = new Record("Com", txtName.getText(), cbShiftYear.isSelected(), Double.parseDouble(txtSalary.getText()));
+        record = new Record(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), Double.parseDouble(txtSalary.getText()));
 
         List<Double> avgHourValues = new LinkedList<>();
         List<Worktime> worktimes = new LinkedList<>();
@@ -188,30 +189,7 @@ public class BonusCalculatorController {
 
         lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
 
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
 
-        PDRectangle mediabox = page.getMediaBox();
-        document.addPage(page);
-        try {
-            PDPageContentStream stream = new PDPageContentStream(document, page);
-            stream.beginText();
-            stream.setFont(PDType1Font.TIMES_ROMAN, 10);
-            stream.newLineAtOffset(0, 25);
-
-            stream.showText("TESt /n TEst");
-
-
-            stream.endText();
-            stream.moveTo(mediabox.getLowerLeftX(), mediabox.getLowerLeftY());
-            stream.lineTo(mediabox.getUpperRightX(), mediabox.getUpperRightY());
-            stream.stroke();
-            stream.close();
-
-
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
 
 
         FileChooser fileChooser = new FileChooser();
@@ -220,10 +198,9 @@ public class BonusCalculatorController {
         };
         File file = fileChooser.showSaveDialog(w);
         try {
-            document.save(file);
-            document.close();
+           pdfCreator.exportFullYearCalculation(record, file);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
 
     }
