@@ -201,6 +201,14 @@ public class PDFCreator {
 
         System.out.println("xstart: " + xStart + "yStart" + yStart);
         System.out.println("xEnde: " + xEnd + "YEnde" + yEnd);
+String halfBonus = commaFormatter.changeToComma(""+record.getBonus()/2);
+        stream.beginText();
+        stream.setFont(PDType1Font.COURIER, 15);
+        stream.newLineAtOffset(75, 175);
+        stream.showText("Weihnachtsgeld: " + halfBonus + " €");
+        stream.newLineAtOffset(0, - 25);
+        stream.showText("Urlaubsgeld: " + halfBonus + " €");
+        stream.endText();
 
         stream.close();
 

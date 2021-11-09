@@ -165,7 +165,7 @@ public class BonusCalculatorController {
         }
 
 
-        record = new Record(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), Double.parseDouble(txtSalary.getText()));
+        record = new Record(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), salary);
 
         List<Double> avgHourValues = new LinkedList<>();
         List<Worktime> worktimes = new LinkedList<>();
@@ -197,7 +197,7 @@ public class BonusCalculatorController {
         double summedAvgHourValues = calculator.sumAverageHours(avgHourValues);
         record.setAverage(Math.round(summedAvgHourValues * 1000.0) / 1000.0);
 
-        double bonus = calculator.calculateBonus(Double.parseDouble(txtSalary.getText()), summedAvgHourValues,
+        double bonus = calculator.calculateBonus(salary, summedAvgHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem());
 
         lblAvg.setText(fmt.changeToComma(String.valueOf(record.getAverage())));
