@@ -6,159 +6,221 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="mainGrid" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mn210511.specialbonuscalculator.BonusCalculatorController">
-    <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-        <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-        <RowConstraints minHeight="10.0" vgrow="NEVER" />
-        <RowConstraints minHeight="10.0" vgrow="NEVER" />
-        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    </rowConstraints>
-    <children>
-        <Label text="Name:" GridPane.rowIndex="2" />
-        <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <GridPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </GridPane.margin>
-        </TextField>
-        <CheckBox fx:id="cbShiftYear" alignment="TOP_CENTER" mnemonicParsing="false" text="Schaltjahr" GridPane.columnIndex="1" GridPane.rowIndex="3">
-            <GridPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </GridPane.margin>
-        </CheckBox>
-        <Label maxWidth="120.0" text="Wochenstunden (Basis Vollzeit):" wrapText="true" GridPane.rowIndex="4" />
-        <ComboBox fx:id="cmbWorkModell" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-            <GridPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </GridPane.margin>
-        </ComboBox>
-        <VBox fx:id="vBoxEntrys" GridPane.columnIndex="1" GridPane.rowIndex="6">
-            <children>
-                <HBox fx:id="hBox1" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <Label text="Stunden">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
-                            </HBox.margin>
+<TabPane prefHeight="698.0" prefWidth="1038.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mn210511.specialbonuscalculator.BonusCalculatorController">
+   <tabs>
+      <Tab closable="false" text="Jahresberechnung">
+         <content>
+            <GridPane fx:id="mainGrid" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="1041.0">
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                    <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                    <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Label text="Name:" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <GridPane.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </GridPane.margin>
+                    </TextField>
+                    <CheckBox fx:id="cbShiftYear" alignment="TOP_CENTER" mnemonicParsing="false" text="Schaltjahr" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <GridPane.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </GridPane.margin>
+                    </CheckBox>
+                    <Label maxWidth="120.0" text="Wochenstunden (Basis Vollzeit):" wrapText="true" GridPane.rowIndex="4" />
+                    <ComboBox fx:id="cmbWorkModell" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <GridPane.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </GridPane.margin>
+                    </ComboBox>
+                    <VBox fx:id="vBoxEntrys" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <children>
+                            <HBox fx:id="hBox1" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                <children>
+                                    <Label text="Stunden">
+                                        <HBox.margin>
+                                            <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
+                                        </HBox.margin>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" text="Tage">
+                                        <HBox.margin>
+                                            <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
+                                        </HBox.margin>
+                                    </Label>
+                              <Label text="Beginn Tag:">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label text="Ende Tag:">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                                </children>
+                            </HBox>
+                            <HBox fx:id="hBox2" alignment="CENTER_LEFT">
+                                <children>
+                                    <TextField fx:id="txtHours1">
+                                        <HBox.margin>
+                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="txtDays1">
+                                        <HBox.margin>
+                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        </HBox.margin>
+                                    </TextField>
+                              <DatePicker fx:id="dtpBeginn1">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                              <DatePicker fx:id="dtpEnd1" />
+                                </children>
+                            </HBox>
+                            <HBox fx:id="hBox3" alignment="CENTER_LEFT">
+                                <children>
+                                    <TextField fx:id="txtHours2">
+                                        <HBox.margin>
+                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="txtDays2">
+                                        <HBox.margin>
+                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        </HBox.margin>
+                                    </TextField>
+                              <DatePicker fx:id="dtpBeginn2">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                              <DatePicker fx:id="dtpEnd2" />
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                    <Button fx:id="btnCalculate" alignment="CENTER_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onAction="#onCalculateBonus" text="Berechnen" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        <children>
+                            <Label text="Bonus gesamt:">
+                                <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </HBox.margin>
+                            </Label>
+                            <Label fx:id="lblBonus" text="WERT">
+                                <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </HBox.margin>
+                            </Label>
+                        <Button fx:id="btnCopyBonus" mnemonicParsing="false" onAction="#onCopyBonus" text="copy" />
+                        </children>
+                    </HBox>
+                    <Button fx:id="btnAddFields" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onPlusButtonClick" text="+" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                    <Label maxWidth="120.0" text="Gehalt: (Basis Vollzeit):" wrapText="true" GridPane.rowIndex="5" />
+                    <TextField fx:id="txtSalary" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <children>
+                        <Label text="Schnitt Gesamt:">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label alignment="TOP_CENTER" text="Tage">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
-                            </HBox.margin>
+                        <Label fx:id="lblAvg" text="WERT">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
                         </Label>
-                  <Label text="Beginn Tag:">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label text="Ende Tag:">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="50.0" right="70.0" top="10.0" />
-                     </HBox.margin>
-                  </Label>
-                    </children>
-                </HBox>
-                <HBox fx:id="hBox2" alignment="CENTER_LEFT">
-                    <children>
-                        <TextField fx:id="txtHours1">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
-                        </TextField>
-                        <TextField fx:id="txtDays1">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
-                        </TextField>
-                  <DatePicker fx:id="dtpBeginn1">
-                     <HBox.margin>
+                     </children>
+                  </HBox>
+                  <Label text="Firma:" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtCompany" prefHeight="24.0" prefWidth="509.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="dtpEnd1" />
-                    </children>
-                </HBox>
-                <HBox fx:id="hBox3" alignment="CENTER_LEFT">
-                    <children>
-                        <TextField fx:id="txtHours2">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
-                        </TextField>
-                        <TextField fx:id="txtDays2">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
-                        </TextField>
-                  <DatePicker fx:id="dtpBeginn2">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="dtpEnd2" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-        <Button fx:id="btnCalculate" alignment="CENTER_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onAction="#onCalculateBonus" text="Berechnen" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
-            <children>
-                <Label text="Bonus gesamt:">
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </HBox.margin>
-                </Label>
-                <Label fx:id="lblBonus" text="WERT">
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </HBox.margin>
-                </Label>
-            <Button fx:id="btnCopyBonus" mnemonicParsing="false" onAction="#onCopyBonus" text="copy" />
-            </children>
-        </HBox>
-        <Button fx:id="btnAddFields" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onPlusButtonClick" text="+" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-        <Label maxWidth="120.0" text="Gehalt: (Basis Vollzeit):" wrapText="true" GridPane.rowIndex="5" />
-        <TextField fx:id="txtSalary" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
-         <children>
-            <Label text="Schnitt Gesamt:">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="lblAvg" text="WERT">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <Label text="Firma:" GridPane.rowIndex="1" />
-      <TextField fx:id="txtCompany" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-      </TextField>
-    </children>
-    <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </padding>
-</GridPane>
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="btnExportPDF2" mnemonicParsing="false" text="Export PDF" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                </children>
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+            </GridPane>
+         </content>
+      </Tab>
+      <Tab closable="false" text="3 Monatsberechnung">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="txtSal1" layoutX="292.0" layoutY="214.0" />
+                  <TextField fx:id="txtSEG1" layoutX="292.0" layoutY="262.0" />
+                  <Button fx:id="btnCalc2" layoutX="710.0" layoutY="610.0" mnemonicParsing="false" text="Berechnen" />
+                  <TextField fx:id="txtExtraHours1" layoutX="292.0" layoutY="306.0" />
+                  <Label layoutX="45.0" layoutY="99.0" text="Name:" />
+                  <TextField fx:id="txtName1" layoutX="129.0" layoutY="95.0" />
+                  <Label layoutX="45.0" layoutY="60.0" text="Firma:" />
+                  <TextField fx:id="txtCompany1" layoutX="129.0" layoutY="56.0" />
+                  <Label layoutX="30.0" layoutY="218.0" prefHeight="16.0" prefWidth="73.0" text="Gehalt:" />
+                  <Label layoutX="32.0" layoutY="266.0" prefHeight="16.0" prefWidth="47.0" text="SEG:" />
+                  <Label layoutX="32.0" layoutY="310.0" text="Mehrstunden:" />
+                  <TextField fx:id="txtSal2" layoutX="497.0" layoutY="214.0" />
+                  <TextField fx:id="txtExtraHours2" layoutX="497.0" layoutY="306.0" />
+                  <TextField fx:id="txtSEG2" layoutX="497.0" layoutY="262.0" />
+                  <TextField fx:id="txtSEG3" layoutX="699.0" layoutY="262.0" />
+                  <TextField fx:id="txtExtraHours3" layoutX="699.0" layoutY="306.0" />
+                  <TextField fx:id="txtSal3" layoutX="699.0" layoutY="214.0" />
+                  <Label layoutX="292.0" layoutY="169.0" text="letzten 3 Monate vor Fälligkeit" />
+                  <Button fx:id="btnExportPDF1" layoutX="825.0" layoutY="610.0" mnemonicParsing="false" text="Export PDF" />
+                  <Label fx:id="lbl3Mcut1" layoutX="358.0" layoutY="411.0" text="WERT" />
+                  <Label fx:id="lbl3Mcut3" layoutX="765.0" layoutY="411.0" text="WERT" />
+                  <Label fx:id="lbl3Mcut2" layoutX="563.0" layoutY="411.0" text="WERT" />
+                  <Label layoutX="45.0" layoutY="548.0" text="Sonderzahlung:" />
+                  <Label fx:id="lblBonus3M" layoutX="193.0" layoutY="548.0" text="WERT" />
+                  <Label layoutX="32.0" layoutY="353.0" text="Zulagen:" />
+                  <TextField fx:id="txtAllowances2" layoutX="497.0" layoutY="349.0" />
+                  <TextField fx:id="txtAllowances3" layoutX="699.0" layoutY="349.0" />
+                  <TextField fx:id="txtAllowances1" layoutX="292.0" layoutY="349.0" />
+                  <Label layoutX="32.0" layoutY="411.0" text="Schnitt:" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
