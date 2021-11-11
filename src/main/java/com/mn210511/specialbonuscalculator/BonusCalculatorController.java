@@ -1,6 +1,6 @@
 package com.mn210511.specialbonuscalculator;
 
-import com.mn210511.specialbonuscalculator.entities.Record;
+import com.mn210511.specialbonuscalculator.entities.RecordFullYearAverage;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
 import com.mn210511.specialbonuscalculator.services.Calculator;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
@@ -18,15 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.PopupWindow;
 import javafx.stage.Window;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -171,7 +165,7 @@ public class BonusCalculatorController {
 
     @FXML
     private VBox vBoxEntrys;
-    private Record record;
+    private RecordFullYearAverage record;
     private PDFCreator pdfCreator = new PDFCreator();
 
     Calculator calculator;
@@ -245,7 +239,7 @@ txtIncSalary.setDisable(true); }
         }
 
 
-        record = new Record(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), salary);
+        record = new RecordFullYearAverage(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), salary);
 
         List<Double> avgHourValues = new LinkedList<>();
         List<Worktime> worktimes = new LinkedList<>();

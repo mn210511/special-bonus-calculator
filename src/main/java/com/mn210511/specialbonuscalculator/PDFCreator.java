@@ -1,6 +1,6 @@
 package com.mn210511.specialbonuscalculator;
 
-import com.mn210511.specialbonuscalculator.entities.Record;
+import com.mn210511.specialbonuscalculator.entities.RecordFullYearAverage;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
 import javafx.stage.FileChooser;
@@ -25,7 +25,7 @@ public class PDFCreator {
 
     public static void main(String[] args) {
         PDFCreator test = new PDFCreator();
-        Record testRecord = new Record("MyCompany", "Nicolas Herold", true, 2500.0);
+        RecordFullYearAverage testRecord = new RecordFullYearAverage("MyCompany", "Nicolas Herold", true, 2500.0);
         List<Worktime> worktimes = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             Worktime tmp = new Worktime(20.0 + i, 10, LocalDate.now(), LocalDate.now());
@@ -56,7 +56,7 @@ public class PDFCreator {
         stream.fillAndStroke();
     }
 
-    public void exportFullYearCalculation(Record record, File file) throws IOException {
+    public void exportFullYearCalculation(RecordFullYearAverage record, File file) throws IOException {
 
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
