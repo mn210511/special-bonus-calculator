@@ -4,6 +4,8 @@ import com.mn210511.specialbonuscalculator.entities.Record;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
 import com.mn210511.specialbonuscalculator.services.Calculator;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -184,7 +186,7 @@ public class BonusCalculatorController {
     public void initialize() {
         calculator = new Calculator();
         fmt = new CommaFormatter();
-
+txtIncSalary.setDisable(true);
         // add all the predefined textfield to the array
         hourFields[entryCount] = txtHours1;
         dayFields[entryCount] = txtDays1;
@@ -194,7 +196,14 @@ public class BonusCalculatorController {
         dayFields[entryCount] = txtDays2;
         beginDates[entryCount] = dtpBeginn2;
         endDates[entryCount] = dtpEnd2;
-
+    cbincSalary.selectedProperty().addListener(new ChangeListener<Boolean>() {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if (txtIncSalary.disableProperty().get()==true){
+txtIncSalary.setDisable(false); }else {
+txtIncSalary.setDisable(true); }
+        }
+    });
 
         cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
 
