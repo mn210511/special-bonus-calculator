@@ -31,53 +31,33 @@ import java.util.List;
 
 public class BonusCalculatorController {
 
+
     @FXML
-    private Label welcomeText;
+    private Button btnAddFields;
+
+    @FXML
+    private Button btnCalc2;
+
+    @FXML
+    private Button btnCalculate;
 
     @FXML
     private Button btnCopyBonus;
+
     @FXML
-    private Button btnAddFields;
+    private Button btnExportPDF1;
+
+    @FXML
+    private Button btnExportPDF2;
 
     @FXML
     private CheckBox cbShiftYear;
 
     @FXML
+    private CheckBox cbincSalary;
+
+    @FXML
     private ComboBox<Double> cmbWorkModell;
-
-    @FXML
-    private Label lblBonus;
-
-    @FXML
-    private TextField txtDays1;
-
-    @FXML
-    private TextField txtDays2;
-
-    @FXML
-    private TextField txtHours1;
-
-    @FXML
-    private TextField txtHours2;
-
-    @FXML
-    private TextField txtName;
-
-    @FXML
-    private TextField txtSalary;
-
-    @FXML
-    private VBox vBoxEntrys;
-    @FXML
-    private HBox hBox1;
-    @FXML
-    private Label lblAvg;
-    @FXML
-    private HBox hBox2;
-    @FXML
-    private GridPane mainGrid;
-    @FXML
-    private HBox hBox3;
 
     @FXML
     private DatePicker dtpBeginn1;
@@ -92,7 +72,103 @@ public class BonusCalculatorController {
     private DatePicker dtpEnd2;
 
     @FXML
+    private HBox hBox1;
+
+    @FXML
+    private HBox hBox2;
+
+    @FXML
+    private HBox hBox3;
+
+    @FXML
+    private Label lbl3Mcut1;
+
+    @FXML
+    private Label lbl3Mcut2;
+
+    @FXML
+    private Label lbl3Mcut3;
+
+    @FXML
+    private Label lblAvg;
+
+    @FXML
+    private Label lblBonus;
+
+    @FXML
+    private Label lblBonus3M;
+
+    @FXML
+    private GridPane mainGrid;
+
+    @FXML
+    private TextField txtAllowances1;
+
+    @FXML
+    private TextField txtAllowances2;
+
+    @FXML
+    private TextField txtAllowances3;
+
+    @FXML
     private TextField txtCompany;
+
+    @FXML
+    private TextField txtCompany1;
+
+    @FXML
+    private TextField txtDays1;
+
+    @FXML
+    private TextField txtDays2;
+
+    @FXML
+    private TextField txtExtraHours1;
+
+    @FXML
+    private TextField txtExtraHours2;
+
+    @FXML
+    private TextField txtExtraHours3;
+
+    @FXML
+    private TextField txtHours1;
+
+    @FXML
+    private TextField txtHours2;
+
+    @FXML
+    private TextField txtIncSalary;
+
+    @FXML
+    private TextField txtName;
+
+    @FXML
+    private TextField txtName1;
+
+    @FXML
+    private TextField txtSEG1;
+
+    @FXML
+    private TextField txtSEG2;
+
+    @FXML
+    private TextField txtSEG3;
+
+    @FXML
+    private TextField txtSal1;
+
+    @FXML
+    private TextField txtSal2;
+
+    @FXML
+    private TextField txtSal3;
+
+    @FXML
+    private TextField txtSalary;
+
+    @FXML
+    private VBox vBoxEntrys;
     private Record record;
     private PDFCreator pdfCreator = new PDFCreator();
 
@@ -125,11 +201,6 @@ public class BonusCalculatorController {
 
     }
 
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
     protected void onPlusButtonClick() {
