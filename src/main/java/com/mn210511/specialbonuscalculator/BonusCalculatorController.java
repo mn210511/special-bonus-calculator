@@ -77,13 +77,19 @@ public class BonusCalculatorController {
     private HBox hBox3;
 
     @FXML
-    private Label lbl3Mcut1;
+    private Label lbl3MAllowance;
 
     @FXML
-    private Label lbl3Mcut2;
+    private Label lbl3MOvertime;
 
     @FXML
-    private Label lbl3Mcut3;
+    private Label lbl3MSeg;
+
+    @FXML
+    private Label lbl3Mavg;
+
+    @FXML
+    private Label lbl3Msalary;
 
     @FXML
     private Label lblAvg;
@@ -165,6 +171,7 @@ public class BonusCalculatorController {
 
     @FXML
     private VBox vBoxEntrys;
+
     private RecordFullYearAverage record;
     private PDFCreator pdfCreator = new PDFCreator();
 

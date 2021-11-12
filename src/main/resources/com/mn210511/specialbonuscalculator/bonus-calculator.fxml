@@ -211,9 +211,9 @@
                   <TextField fx:id="txtSal3" layoutX="699.0" layoutY="214.0" />
                   <Label layoutX="292.0" layoutY="169.0" text="letzten 3 Monate vor Fälligkeit" />
                   <Button fx:id="btnExportPDF1" layoutX="825.0" layoutY="610.0" mnemonicParsing="false" text="Export PDF" />
-                  <Label fx:id="lbl3Mcut1" layoutX="358.0" layoutY="411.0" text="WERT" />
-                  <Label fx:id="lbl3Mcut3" layoutX="765.0" layoutY="411.0" text="WERT" />
-                  <Label fx:id="lbl3Mcut2" layoutX="563.0" layoutY="411.0" text="WERT" />
+                  <Label fx:id="lbl3Msalary" layoutX="907.0" layoutY="218.0" text="WERT" />
+                  <Label fx:id="lbl3MOvertime" layoutX="907.0" layoutY="310.0" text="WERT" />
+                  <Label fx:id="lbl3MSeg" layoutX="907.0" layoutY="266.0" text="WERT" />
                   <Label layoutX="45.0" layoutY="548.0" text="Sonderzahlung:" />
                   <Label fx:id="lblBonus3M" layoutX="193.0" layoutY="548.0" text="WERT" />
                   <Label layoutX="32.0" layoutY="353.0" text="Zulagen:" />
@@ -221,6 +221,8 @@
                   <TextField fx:id="txtAllowances3" layoutX="699.0" layoutY="349.0" />
                   <TextField fx:id="txtAllowances1" layoutX="292.0" layoutY="349.0" />
                   <Label layoutX="32.0" layoutY="411.0" text="Schnitt:" />
+                  <Label fx:id="lbl3MAllowance" layoutX="907.0" layoutY="353.0" text="WERT" />
+                  <Label fx:id="lbl3Mavg" layoutX="141.0" layoutY="411.0" text="Label" />
                </children>
             </AnchorPane>
          </content>
