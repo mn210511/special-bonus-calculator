@@ -13,4 +13,8 @@ abstract public class Record {
     public Record(){
 
     }
+
+
+    abstract public String getCompany();
+    abstract public String getEmployee();
 }
