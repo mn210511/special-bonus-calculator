@@ -2,6 +2,7 @@ package com.mn210511.specialbonuscalculator.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalDouble;
 
 public class Calculator {
 
@@ -53,6 +54,16 @@ double ret = 0;
     public double calculateBonus(double salary, double avgHours, double workDaysPerWeek) {
 
         return (salary / workDaysPerWeek) * avgHours;
+    }
+
+    public double calculateThreeMonthAverage(double ... values) {
+     double ret = Arrays.stream(values).sum();
+
+        return ret/3;
+    };
+
+    public double sum (double ... values) {
+        return Arrays.stream(values).sum();
     }
 
 }
