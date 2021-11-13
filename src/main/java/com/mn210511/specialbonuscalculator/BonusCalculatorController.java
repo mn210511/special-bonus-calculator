@@ -284,15 +284,34 @@ public class BonusCalculatorController {
         double summedAvgHourValues = calculator.sumAverageHours(avgHourValues);
         record.setAverage(calculator.round(summedAvgHourValues));
 
-        double bonus = calculator.calculateBonus(salary, summedAvgHourValues,
-                cmbWorkModell.getSelectionModel().getSelectedItem());
+
+        double holidayAllowance = calculator.round(calculator.calculateBonus(record.getSalary(), summedAvgHourValues,
+                cmbWorkModell.getSelectionModel().getSelectedItem()));
+        if (cbincSalary.isSelected() == true) {
+            record.setSalary(Double.parseDouble(txtIncSalary.getText()));
+        }
+        double christmasAllowance = calculator.round(calculator.calculateBonus(record.getSalary(), summedAvgHourValues,
+                cmbWorkModell.getSelectionModel().getSelectedItem()));
+
+        record.setBonusUB(holidayAllowance);
+        record.setBonusWR(christmasAllowance);
+        record.setBonusTotal(holidayAllowance + christmasAllowance);
+
+        lblUZ.setText(fmt.changeToComma(String.valueOf(holidayAllowance)));
+        lblWR.setText(fmt.changeToComma(String.valueOf(christmasAllowance)));
+
 
         lblAvg.setText(fmt.changeToComma(String.valueOf(record.getAverage())));
-        record.setBonusTotal(calculator.round(bonus));
+
 
         lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonusTotal())));
 
 
+
+    }
+
+    @FXML
+    protected void onExportPDF() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("save PDF");
         Window w = new PopupWindow() {
@@ -303,7 +322,6 @@ public class BonusCalculatorController {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
@@ -345,7 +363,7 @@ public class BonusCalculatorController {
         lbl3Msalary.setText(fmt.changeToComma(String.valueOf(calculator.round(record.getAvgSalary()))));
         lbl3MSeg.setText(fmt.changeToComma(String.valueOf(calculator.round(record.getAvgDirtAllowance()))));
 
-        record.setBonus(calculator.sum(record.getAvgDivAllowance(),record.getAvgOvertime(), record.getAvgSalary(),
+        record.setBonus(calculator.sum(record.getAvgDivAllowance(), record.getAvgOvertime(), record.getAvgSalary(),
                 record.getAvgDirtAllowance()));
         lblBonus3M.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
 
@@ -363,7 +381,7 @@ public class BonusCalculatorController {
     }
 
     private double safeParsedDouble(String txt) {
-double ret;
+        double ret;
         try {
             ret = Double.parseDouble(txt);
         } catch (NumberFormatException e) {
@@ -371,7 +389,7 @@ double ret;
         }
 
 
-     return ret;
+        return ret;
     }
 
 }
