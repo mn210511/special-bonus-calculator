@@ -66,4 +66,9 @@ double ret = 0;
         return Arrays.stream(values).sum();
     }
 
+    public double round (double val) {
+
+        return  Math.round(val*1000.00)/1000.00;
+    }
+
 }

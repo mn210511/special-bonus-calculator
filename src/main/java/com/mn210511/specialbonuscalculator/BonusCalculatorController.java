@@ -276,13 +276,13 @@ public class BonusCalculatorController {
         }
         record.setWorktimes(worktimes);
         double summedAvgHourValues = calculator.sumAverageHours(avgHourValues);
-        record.setAverage(Math.round(summedAvgHourValues * 1000.0) / 1000.0);
+        record.setAverage(calculator.round(summedAvgHourValues));
 
         double bonus = calculator.calculateBonus(salary, summedAvgHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem());
 
         lblAvg.setText(fmt.changeToComma(String.valueOf(record.getAverage())));
-        record.setBonus(Math.round(bonus * 1000.0) / 1000.0);
+        record.setBonus(calculator.round(bonus));
 
         lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
 
@@ -334,10 +334,10 @@ public class BonusCalculatorController {
         record.setAvgSalary(calculator.calculateThreeMonthAverage(salarys));
         record.setAvgDivAllowance(calculator.calculateThreeMonthAverage(divAllowances));
 
-        lbl3MAllowance.setText(String.valueOf(record.getAvgDivAllowance()));
-        lbl3MOvertime.setText(String.valueOf(record.getAvgOvertime()));
-        lbl3Msalary.setText(String.valueOf(record.getAvgSalary()));
-        lbl3MSeg.setText(String.valueOf(record.getAvgDirtAllowance()));
+        lbl3MAllowance.setText(String.valueOf(calculator.round(record.getAvgDivAllowance())));
+        lbl3MOvertime.setText(String.valueOf(calculator.round(record.getAvgOvertime())));
+        lbl3Msalary.setText(String.valueOf(calculator.round(record.getAvgSalary())));
+        lbl3MSeg.setText(String.valueOf(calculator.round(record.getAvgDirtAllowance())));
 
         record.setBonus(calculator.sum(record.getAvgDivAllowance(),record.getAvgOvertime(), record.getAvgSalary(),
                 record.getAvgDirtAllowance()));
