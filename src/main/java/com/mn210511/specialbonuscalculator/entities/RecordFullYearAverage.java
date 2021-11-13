@@ -12,7 +12,9 @@ public class RecordFullYearAverage extends Record{
     List<Worktime> worktimes;
     boolean shiftyear;
     double average;
-    double bonus;
+    double bonusTotal;
+    double bonusWR;
+    double bonusUB;
     double salary;
 
     public RecordFullYearAverage(String company, String employee, boolean shiftyear, double salary) {
@@ -68,12 +70,12 @@ public class RecordFullYearAverage extends Record{
         this.average = average;
     }
 
-    public double getBonus() {
-        return bonus;
+    public double getBonusTotal() {
+        return bonusTotal;
     }
 
-    public void setBonus(double bonus) {
-        this.bonus = bonus;
+    public void setBonusTotal(double bonusTotal) {
+        this.bonusTotal = bonusTotal;
     }
 
     public int getSummedDays(){
@@ -82,4 +84,27 @@ public class RecordFullYearAverage extends Record{
       return sum;
     };
 
+    public double getBonusWR() {
+        return bonusWR;
+    }
+
+    public void setBonusWR(double bonusWR) {
+        this.bonusWR = bonusWR;
+    }
+
+    public double getBonusUB() {
+        return bonusUB;
+    }
+
+    public void setBonusUB(double bonusUB) {
+        this.bonusUB = bonusUB;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 }

@@ -165,7 +165,7 @@ public class PDFCreator {
         stream.newLineAtOffset(80, mediabox.getUpperRightY() - 570);
         stream.showText("Sonderzahlung gesamt:");
         stream.newLineAtOffset(320, 0);
-        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getBonus())));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getBonusTotal())));
         stream.endText();
 
         //drawing the vertical lines
@@ -201,7 +201,7 @@ public class PDFCreator {
 
         System.out.println("xstart: " + xStart + "yStart" + yStart);
         System.out.println("xEnde: " + xEnd + "YEnde" + yEnd);
-String halfBonus = commaFormatter.changeToComma(""+record.getBonus()/2);
+String halfBonus = commaFormatter.changeToComma(""+record.getBonusTotal()/2);
         stream.beginText();
         stream.setFont(PDType1Font.COURIER, 15);
         stream.newLineAtOffset(75, 175);

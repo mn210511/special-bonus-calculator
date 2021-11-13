@@ -282,9 +282,9 @@ public class BonusCalculatorController {
                 cmbWorkModell.getSelectionModel().getSelectedItem());
 
         lblAvg.setText(fmt.changeToComma(String.valueOf(record.getAverage())));
-        record.setBonus(calculator.round(bonus));
+        record.setBonusTotal(calculator.round(bonus));
 
-        lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
+        lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonusTotal())));
 
 
         FileChooser fileChooser = new FileChooser();
@@ -334,14 +334,14 @@ public class BonusCalculatorController {
         record.setAvgSalary(calculator.calculateThreeMonthAverage(salarys));
         record.setAvgDivAllowance(calculator.calculateThreeMonthAverage(divAllowances));
 
-        lbl3MAllowance.setText(String.valueOf(calculator.round(record.getAvgDivAllowance())));
-        lbl3MOvertime.setText(String.valueOf(calculator.round(record.getAvgOvertime())));
-        lbl3Msalary.setText(String.valueOf(calculator.round(record.getAvgSalary())));
-        lbl3MSeg.setText(String.valueOf(calculator.round(record.getAvgDirtAllowance())));
+        lbl3MAllowance.setText(fmt.changeToComma(String.valueOf(calculator.round(record.getAvgDivAllowance()))));
+        lbl3MOvertime.setText(fmt.changeToComma(String.valueOf(calculator.round(record.getAvgOvertime()))));
+        lbl3Msalary.setText(fmt.changeToComma(String.valueOf(calculator.round(record.getAvgSalary()))));
+        lbl3MSeg.setText(fmt.changeToComma(String.valueOf(calculator.round(record.getAvgDirtAllowance()))));
 
         record.setBonus(calculator.sum(record.getAvgDivAllowance(),record.getAvgOvertime(), record.getAvgSalary(),
                 record.getAvgDirtAllowance()));
-        lblBonus3M.setText(String.valueOf(record.getBonus()));
+        lblBonus3M.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
 
     }
 
