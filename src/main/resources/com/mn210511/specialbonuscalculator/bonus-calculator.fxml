@@ -194,8 +194,8 @@
                <children>
                   <TextField fx:id="txtSal1" layoutX="292.0" layoutY="214.0" text="0.0" />
                   <TextField fx:id="txtSEG1" layoutX="292.0" layoutY="262.0" text="0.0" />
-                  <Button fx:id="btnCalc2" layoutX="710.0" layoutY="610.0" mnemonicParsing="false" text="Berechnen" />
-                  <TextField fx:id="txtExtraHours1" layoutX="292.0" layoutY="306.0" text="0.0" />
+                  <Button fx:id="btnCalc2" layoutX="710.0" layoutY="610.0" mnemonicParsing="false" onAction="#onCalculateThreeMonthAverage" text="Berechnen" />
+                  <TextField fx:id="txtOvertime1" layoutX="292.0" layoutY="306.0" text="0.0" />
                   <Label layoutX="45.0" layoutY="99.0" text="Name:" />
                   <TextField fx:id="txtName1" layoutX="129.0" layoutY="95.0" promptText="Mitarbeitername" />
                   <Label layoutX="45.0" layoutY="60.0" text="Firma:" />
@@ -204,10 +204,10 @@
                   <Label layoutX="32.0" layoutY="266.0" prefHeight="16.0" prefWidth="47.0" text="SEG:" />
                   <Label layoutX="32.0" layoutY="310.0" text="Mehrstunden:" />
                   <TextField fx:id="txtSal2" layoutX="497.0" layoutY="214.0" text="0.0" />
-                  <TextField fx:id="txtExtraHours2" layoutX="497.0" layoutY="306.0" text="0.0" />
+                  <TextField fx:id="txtOvertime2" layoutX="497.0" layoutY="306.0" text="0.0" />
                   <TextField fx:id="txtSEG2" layoutX="497.0" layoutY="262.0" text="0.0" />
                   <TextField fx:id="txtSEG3" layoutX="699.0" layoutY="262.0" text="0.0" />
-                  <TextField fx:id="txtExtraHours3" layoutX="699.0" layoutY="306.0" text="0.0" />
+                  <TextField fx:id="txtOvertime3" layoutX="699.0" layoutY="306.0" text="0.0" />
                   <TextField fx:id="txtSal3" layoutX="699.0" layoutY="214.0" text="0.0" />
                   <Label layoutX="292.0" layoutY="169.0" text="letzten 3 Monate vor Fälligkeit" />
                   <Button fx:id="btnExportPDF1" layoutX="825.0" layoutY="610.0" mnemonicParsing="false" text="Export PDF" />
@@ -220,9 +220,7 @@
                   <TextField fx:id="txtAllowances2" layoutX="497.0" layoutY="349.0" text="0.0" />
                   <TextField fx:id="txtAllowances3" layoutX="699.0" layoutY="349.0" text="0.0" />
                   <TextField fx:id="txtAllowances1" layoutX="292.0" layoutY="349.0" text="0.0" />
-                  <Label layoutX="32.0" layoutY="411.0" text="Schnitt:" />
                   <Label fx:id="lbl3MAllowance" layoutX="907.0" layoutY="353.0" text="WERT" />
-                  <Label fx:id="lbl3Mavg" layoutX="141.0" layoutY="411.0" text="Label" />
                </children>
             </AnchorPane>
          </content>

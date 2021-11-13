@@ -9,6 +9,7 @@ public class RecordThreeMonth extends Record{
     double[] dirtAllowances = new double[3];
     double[] overtimes = new double[3];
     double[] divAllowances = new double[3];
+    double bonus;
 
     public RecordThreeMonth(String company, String employee) {
         super(company, employee);
@@ -90,5 +91,13 @@ public class RecordThreeMonth extends Record{
 
     public void setDivAllowances(double[] divAllowances) {
         this.divAllowances = divAllowances;
+    }
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
+    public double getBonus() {
+        return bonus;
     }
 }

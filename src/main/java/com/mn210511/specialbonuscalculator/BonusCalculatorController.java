@@ -1,6 +1,7 @@
 package com.mn210511.specialbonuscalculator;
 
 import com.mn210511.specialbonuscalculator.entities.RecordFullYearAverage;
+import com.mn210511.specialbonuscalculator.entities.RecordThreeMonth;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
 import com.mn210511.specialbonuscalculator.services.Calculator;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
@@ -85,8 +86,6 @@ public class BonusCalculatorController {
     @FXML
     private Label lbl3MSeg;
 
-    @FXML
-    private Label lbl3Mavg;
 
     @FXML
     private Label lbl3Msalary;
@@ -125,13 +124,13 @@ public class BonusCalculatorController {
     private TextField txtDays2;
 
     @FXML
-    private TextField txtExtraHours1;
+    private TextField txtOvertime1;
 
     @FXML
-    private TextField txtExtraHours2;
+    private TextField txtOvertime2;
 
     @FXML
-    private TextField txtExtraHours3;
+    private TextField txtOvertime3;
 
     @FXML
     private TextField txtHours1;
@@ -187,7 +186,7 @@ public class BonusCalculatorController {
     public void initialize() {
         calculator = new Calculator();
         fmt = new CommaFormatter();
-txtIncSalary.setDisable(true);
+        txtIncSalary.setDisable(true);
         // add all the predefined textfield to the array
         hourFields[entryCount] = txtHours1;
         dayFields[entryCount] = txtDays1;
@@ -197,14 +196,16 @@ txtIncSalary.setDisable(true);
         dayFields[entryCount] = txtDays2;
         beginDates[entryCount] = dtpBeginn2;
         endDates[entryCount] = dtpEnd2;
-    cbincSalary.selectedProperty().addListener(new ChangeListener<Boolean>() {
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if (txtIncSalary.disableProperty().get()==true){
-txtIncSalary.setDisable(false); }else {
-txtIncSalary.setDisable(true); }
-        }
-    });
+        cbincSalary.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (txtIncSalary.disableProperty().get() == true) {
+                    txtIncSalary.setDisable(false);
+                } else {
+                    txtIncSalary.setDisable(true);
+                }
+            }
+        });
 
         cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
 
@@ -267,8 +268,7 @@ txtIncSalary.setDisable(true); }
             }
 
 
-
-            Worktime tmp = new Worktime(hours, Integer.parseInt(t2.getText()),p.getValue(), pEnd.getValue());
+            Worktime tmp = new Worktime(hours, Integer.parseInt(t2.getText()), p.getValue(), pEnd.getValue());
             tmp.setAverage(calculator.averageHours(tmp.getHoursPerWeek(), tmp.getDuration(), record.isShiftyear()));
             worktimes.add(tmp);
             avgHourValues.add(tmp.getAverage());
@@ -287,20 +287,64 @@ txtIncSalary.setDisable(true); }
         lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
 
 
-
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("save PDF");
         Window w = new PopupWindow() {
         };
         File file = fileChooser.showSaveDialog(w);
         try {
-           pdfCreator.exportFullYearCalculation(record, file);
+            pdfCreator.exportFullYearCalculation(record, file);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
 
     }
+
+    @FXML
+    protected void onCalculateThreeMonthAverage() {
+        RecordThreeMonth record = new RecordThreeMonth(txtCompany1.getText(), txtName1.getText());
+        double[] divAllowances = new double[3];
+        double[] overtimes = new double[3];
+        double[] dirtAllowances = new double[3];
+        double[] salarys = new double[3];
+
+        divAllowances[0] = safeParsedDouble(txtAllowances1.getText());
+        divAllowances[1] = safeParsedDouble(txtAllowances2.getText());
+        divAllowances[2] = safeParsedDouble(txtAllowances3.getText());
+
+        overtimes[0] = safeParsedDouble(txtOvertime1.getText());
+        overtimes[1] = safeParsedDouble(txtOvertime2.getText());
+        overtimes[2] = safeParsedDouble(txtOvertime3.getText());
+
+        dirtAllowances[0] = safeParsedDouble(txtSEG1.getText());
+        dirtAllowances[1] = safeParsedDouble(txtSEG2.getText());
+        dirtAllowances[2] = safeParsedDouble(txtSEG3.getText());
+
+        salarys[0] = safeParsedDouble(txtSal1.getText());
+        salarys[1] = safeParsedDouble(txtSal2.getText());
+        salarys[2] = safeParsedDouble(txtSal3.getText());
+
+        record.setOvertimes(overtimes);
+        record.setSalarys(salarys);
+        record.setDirtAllowances(dirtAllowances);
+        record.setDivAllowances(divAllowances);
+
+        record.setAvgOvertime(calculator.calculateThreeMonthAverage(overtimes));
+        record.setAvgDirtAllowance(calculator.calculateThreeMonthAverage(dirtAllowances));
+        record.setAvgSalary(calculator.calculateThreeMonthAverage(salarys));
+        record.setAvgDivAllowance(calculator.calculateThreeMonthAverage(divAllowances));
+
+        lbl3MAllowance.setText(String.valueOf(record.getAvgDivAllowance()));
+        lbl3MOvertime.setText(String.valueOf(record.getAvgOvertime()));
+        lbl3Msalary.setText(String.valueOf(record.getAvgSalary()));
+        lbl3MSeg.setText(String.valueOf(record.getAvgDirtAllowance()));
+
+        record.setBonus(calculator.sum(record.getAvgDivAllowance(),record.getAvgOvertime(), record.getAvgSalary(),
+                record.getAvgDirtAllowance()));
+        lblBonus3M.setText(String.valueOf(record.getBonus()));
+
+    }
+
 
     @FXML
     protected void onCopyBonus() {
@@ -312,5 +356,16 @@ txtIncSalary.setDisable(true); }
 
     }
 
+    private double safeParsedDouble(String txt) {
+double ret;
+        try {
+            ret = Double.parseDouble(txt);
+        } catch (NumberFormatException e) {
+            ret = Double.parseDouble(fmt.changeToDot(txt));
+        }
+
+
+     return ret;
+    }
 
 }
