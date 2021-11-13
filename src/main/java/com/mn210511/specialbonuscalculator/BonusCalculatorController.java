@@ -30,6 +30,12 @@ public class BonusCalculatorController {
 
 
     @FXML
+    private Label lblUZ;
+
+    @FXML
+    private Label lblWR;
+
+    @FXML
     private Button btnAddFields;
 
     @FXML
