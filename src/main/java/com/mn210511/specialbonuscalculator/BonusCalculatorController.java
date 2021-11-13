@@ -7,6 +7,7 @@ import com.mn210511.specialbonuscalculator.services.Calculator;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -176,6 +177,11 @@ public class BonusCalculatorController {
 
     @FXML
     private VBox vBoxEntrys;
+    @FXML
+    private Button btnCopyChristmasBonus;
+
+    @FXML
+    private Button btnCopyHolidayAllowance;
 
     private RecordFullYearAverage record;
     private PDFCreator pdfCreator = new PDFCreator();
@@ -371,11 +377,17 @@ public class BonusCalculatorController {
 
 
     @FXML
-    protected void onCopyBonus() {
+    protected void onCopyBonus(ActionEvent ev) {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
-
+        Button tmp = (Button) ev.getSource();
         final ClipboardContent content = new ClipboardContent();
-        content.putString(lblBonus.getText());
+        if (tmp.getId().equals(btnCopyBonus.getId())) {
+            content.putString(lblBonus.getText());
+        } else if (tmp.getId().equals(btnCopyChristmasBonus.getId())) {
+            content.putString(lblWR.getText());
+        } else {
+            content.putString(lblUZ.getText());
+        }
         clipboard.setContent(content);
 
     }

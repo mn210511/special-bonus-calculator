@@ -165,13 +165,14 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button fx:id="btnExportPDF2" mnemonicParsing="false" text="Export PDF" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                  <Button fx:id="btnExportPDF2" mnemonicParsing="false" onAction="#onExportPDF" text="Export PDF" GridPane.columnIndex="2" GridPane.rowIndex="10" />
                   <CheckBox fx:id="cbincSalary" mnemonicParsing="false" text="gehaltserhöhung erhalten" wrapText="true" GridPane.rowIndex="6" />
                   <TextField fx:id="txtIncSalary" promptText="neues Gehalt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="10">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -182,6 +183,8 @@
                         <Label text="Urlaubszuschuss:" GridPane.rowIndex="1" />
                         <Label fx:id="lblWR" text="WERT" GridPane.columnIndex="1" />
                         <Label fx:id="lblUZ" text="WERT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="btnCopyChristmasBonus" mnemonicParsing="false" onAction="#onCopyBonus" text="copy" GridPane.columnIndex="2" />
+                        <Button fx:id="btnCopyHolidayAllowance" mnemonicParsing="false" onAction="#onCopyBonus" text="copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                 </children>
@@ -226,7 +229,7 @@
                   <TextField fx:id="txtOvertime3" layoutX="699.0" layoutY="306.0" text="0.0" />
                   <TextField fx:id="txtSal3" layoutX="699.0" layoutY="214.0" text="0.0" />
                   <Label layoutX="292.0" layoutY="169.0" text="letzten 3 Monate vor Fälligkeit" />
-                  <Button fx:id="btnExportPDF1" layoutX="825.0" layoutY="610.0" mnemonicParsing="false" text="Export PDF" />
+                  <Button fx:id="btnExportPDF1" layoutX="825.0" layoutY="610.0" mnemonicParsing="false" onAction="#onExportPDF" text="Export PDF" />
                   <Label fx:id="lbl3Msalary" layoutX="907.0" layoutY="218.0" text="WERT" />
                   <Label fx:id="lbl3MOvertime" layoutX="907.0" layoutY="310.0" text="WERT" />
                   <Label fx:id="lbl3MSeg" layoutX="907.0" layoutY="266.0" text="WERT" />
