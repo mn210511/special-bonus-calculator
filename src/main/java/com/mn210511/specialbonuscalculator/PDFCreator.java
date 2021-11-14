@@ -1,6 +1,8 @@
 package com.mn210511.specialbonuscalculator;
 
+import com.mn210511.specialbonuscalculator.entities.Record;
 import com.mn210511.specialbonuscalculator.entities.RecordFullYearAverage;
+import com.mn210511.specialbonuscalculator.entities.RecordThreeMonth;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
 import javafx.stage.FileChooser;
@@ -17,6 +19,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PDFCreator {
@@ -36,6 +39,21 @@ public class PDFCreator {
         }
         testRecord.setWorktimes(worktimes);
 
+        RecordThreeMonth rec = new RecordThreeMonth("Company", "nicolas");
+        double[] tmp = {3000.00, 1000.00, 2222.0};
+
+        rec.setSalarys(tmp);
+        rec.setOvertimes(tmp);
+        rec.setDivAllowances(tmp);
+        rec.setDirtAllowances(tmp);
+
+        rec.setBonus(15500);
+        rec.setAvgSalary(546);
+        rec.setAvgDivAllowance(45);
+        rec.setAvgOvertime(486);
+        rec.setAvgDirtAllowance(546);
+
+
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("save PDF");
@@ -43,7 +61,7 @@ public class PDFCreator {
         File file = new File("/home/nicolas/Schreibtisch/test");
 
         try {
-            test.exportFullYearCalculation(testRecord, file);
+            test.expoort3MonthAverageCalculation(rec, file);
         } catch (IOException e) {
             System.err.println(e.getLocalizedMessage());
         }
@@ -56,7 +74,7 @@ public class PDFCreator {
         stream.fillAndStroke();
     }
 
-    public void exportFullYearCalculation(RecordFullYearAverage record, File file) throws IOException {
+    private void exportFullYearCalculation(RecordFullYearAverage record, File file) throws IOException {
 
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
@@ -201,19 +219,188 @@ public class PDFCreator {
 
         System.out.println("xstart: " + xStart + "yStart" + yStart);
         System.out.println("xEnde: " + xEnd + "YEnde" + yEnd);
-String halfBonus = commaFormatter.changeToComma(""+record.getBonusTotal()/2);
+
         stream.beginText();
         stream.setFont(PDType1Font.COURIER, 15);
         stream.newLineAtOffset(75, 175);
-        stream.showText("Weihnachtsgeld: " + halfBonus + " €");
-        stream.newLineAtOffset(0, - 25);
-        stream.showText("Urlaubsgeld: " + halfBonus + " €");
+        stream.showText("Weihnachtsgeld: " + record.getBonusWR() + " €");
+        stream.newLineAtOffset(0, -25);
+        stream.showText("Urlaubsgeld: " + record.getBonusUB() + " €");
         stream.endText();
 
         stream.close();
 
         document.save(file);
         document.close();
+
+    }
+
+    private void expoort3MonthAverageCalculation(RecordThreeMonth record, File file) throws IOException {
+
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+
+        PDRectangle mediabox = page.getMediaBox();
+        document.addPage(page);
+
+        PDPageContentStream stream = new PDPageContentStream(document, page);
+
+
+        float xStart = mediabox.getLowerLeftX();
+        float yStart = mediabox.getLowerLeftY();
+
+        float xEnd = mediabox.getUpperRightX();
+        float yEnd = mediabox.getUpperRightY();
+
+        int rows = 5;
+        float gap = 20.0f;
+
+        //drawing the horizontal lines
+        for (int i = 0; i < rows; i++) {
+
+            xStart = 45.0f;
+            xEnd = xStart + 107.3f*5;
+            yStart = 550.0f;
+            yEnd = 550.0f;
+
+            drawLine(stream, xStart, yStart - (gap * i), xEnd, yEnd - (gap * i));
+
+
+        }
+        stream.beginText();
+        stream.setFont(PDType1Font.TIMES_ROMAN, 20);
+        stream.newLineAtOffset(20, mediabox.getUpperRightY() - 50);
+        stream.setRenderingMode(RenderingMode.FILL_STROKE);
+        stream.showText("Firma: ");
+
+        stream.newLineAtOffset(0, -20);
+        stream.showText("Mitarbeiter: ");
+        stream.setRenderingMode(RenderingMode.FILL);
+        stream.setFont(PDType1Font.TIMES_ROMAN, 18);
+        stream.newLineAtOffset(100, 0);
+        stream.showText(record.getEmployee());
+        stream.newLineAtOffset(0, +20);
+        stream.showText(record.getCompany());
+        stream.endText();
+
+
+        float lineOffset = 230.0f;
+
+        stream.beginText();
+        stream.newLineAtOffset(50, mediabox.getUpperRightY()-lineOffset);
+        stream.setFont(PDType1Font.COURIER, 15);
+        stream.showText("3 Monatsschnitt vor Fälligkeit:");
+        stream.endText();
+
+
+        lineOffset = 260.0f;
+        //Headlines
+
+        double[] tmp = record.getSalarys();
+
+        fillValues(mediabox.getUpperRightY() - lineOffset, stream, tmp, "Gehalt:", record.getAvgSalary());
+        lineOffset = 280.0f;
+
+        // values of the Calculation inside the cells
+
+   tmp = record.getOvertimes();
+        fillValues(mediabox.getUpperRightY() - lineOffset, stream, tmp, "Mehrstunden:", record.getAvgOvertime());
+
+        lineOffset -= -20;
+        tmp = record.getDirtAllowances();
+
+        fillValues(mediabox.getUpperRightY() - lineOffset, stream, tmp, "SEG:", record.getAvgDirtAllowance());
+
+        lineOffset -= -20;
+        tmp = record.getDivAllowances();
+
+        fillValues(mediabox.getUpperRightY() - lineOffset, stream, tmp, "Zulagen:", record.getAvgDivAllowance());
+
+        lineOffset -= -20;
+
+
+
+        stream.beginText();
+        stream.setFont(PDType1Font.COURIER, 15);
+        stream.newLineAtOffset(50, mediabox.getUpperRightY() - 415);
+        stream.setRenderingMode(RenderingMode.FILL_STROKE);
+        stream.showText("Sonderzahlung gesamt:");
+        stream.newLineAtOffset(107.3f*4, 0);
+        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getBonus())));
+        stream.endText();
+
+
+
+        //drawing the vertical lines
+        int columns = 6;
+        xEnd = xStart;
+        yEnd = yStart - (rows * gap) + gap;
+        gap = 107.3f;
+        for (int i = 0; i < columns; i++) {
+
+            drawLine(stream, xStart + (gap * i), yStart, xEnd + (gap * i), yEnd);
+        }
+
+        //longer lines on the outside border
+        drawLine(stream, xStart, yStart, xStart, yEnd - 105);
+        drawLine(stream, xStart + (gap * columns) - gap, yStart, xStart + (gap * columns) - gap, yEnd - 105);
+
+        //line between summed AVG and the endresult
+        drawLine(stream, xStart, yEnd - 50, xEnd + (columns * gap) - gap, yEnd - 50);
+
+        //line for the bottom border
+        drawLine(stream, xStart, yEnd - 100, xEnd + (columns * gap) - gap, yEnd - 100);
+        drawLine(stream, xStart, yEnd - 105, xEnd + (columns * gap) - gap, yEnd - 105);
+
+// Line with the creation Date at the bottom
+        stream.beginText();
+        stream.setRenderingMode(RenderingMode.FILL);
+        stream.setFont(PDType1Font.TIMES_ROMAN, 15);
+        stream.newLineAtOffset(mediabox.getUpperRightX() - 150, mediabox.getLowerLeftY() + 20);
+
+        stream.showText("Erstellt am " + DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(LocalDate.now()));
+        stream.endText();
+
+
+        System.out.println("xstart: " + xStart + "yStart" + yStart);
+        System.out.println("xEnde: " + xEnd + "YEnde" + yEnd);
+
+
+
+        stream.close();
+
+        document.save(file);
+        document.close();
+
+    }
+
+    private void fillValues(float lineOffset, PDPageContentStream stream, double[] tmp, String headline, double avgValue) throws IOException {
+        stream.setFont(PDType1Font.COURIER, 12);
+        stream.setRenderingMode(RenderingMode.FILL);
+        stream.beginText();
+        stream.newLineAtOffset(50, lineOffset);
+        stream.showText(headline);
+        stream.newLineAtOffset(107.3f, 0);
+        stream.showText(commaFormatter.changeToComma(String.valueOf(tmp[0])));
+        stream.newLineAtOffset(107.3f, 0);
+        stream.showText(commaFormatter.changeToComma(String.valueOf(tmp[1])));
+        stream.newLineAtOffset(107.3f, 0);
+
+        stream.showText(commaFormatter.changeToComma(String.valueOf(tmp[2])));
+        stream.newLineAtOffset(107.3f, 0);
+        stream.showText(commaFormatter.changeToComma(String.valueOf(avgValue)));
+        stream.endText();
+    }
+
+
+    public void exportPDF(Record record, File file) throws IOException {
+
+        if (record instanceof RecordFullYearAverage) {
+            exportFullYearCalculation((RecordFullYearAverage) record, file);
+        } else if (record instanceof RecordThreeMonth) {
+            expoort3MonthAverageCalculation((RecordThreeMonth) record, file);
+        }
+
 
     }
 }

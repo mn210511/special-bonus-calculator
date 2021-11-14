@@ -1,5 +1,6 @@
 package com.mn210511.specialbonuscalculator;
 
+import com.mn210511.specialbonuscalculator.entities.Record;
 import com.mn210511.specialbonuscalculator.entities.RecordFullYearAverage;
 import com.mn210511.specialbonuscalculator.entities.RecordThreeMonth;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
@@ -183,7 +184,7 @@ public class BonusCalculatorController {
     @FXML
     private Button btnCopyHolidayAllowance;
 
-    private RecordFullYearAverage record;
+    private Record record;
     private PDFCreator pdfCreator = new PDFCreator();
 
     Calculator calculator;
@@ -259,7 +260,7 @@ public class BonusCalculatorController {
         }
 
 
-        record = new RecordFullYearAverage(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), salary);
+       RecordFullYearAverage record = new RecordFullYearAverage(txtCompany.getText(), txtName.getText(), cbShiftYear.isSelected(), salary);
 
         List<Double> avgHourValues = new LinkedList<>();
         List<Worktime> worktimes = new LinkedList<>();
@@ -312,7 +313,7 @@ public class BonusCalculatorController {
 
         lblBonus.setText(fmt.changeToComma(String.valueOf(record.getBonusTotal())));
 
-
+this.record = record;
 
     }
 
@@ -324,7 +325,7 @@ public class BonusCalculatorController {
         };
         File file = fileChooser.showSaveDialog(w);
         try {
-            pdfCreator.exportFullYearCalculation(record, file);
+            pdfCreator.exportPDF(record, file);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -372,7 +373,7 @@ public class BonusCalculatorController {
         record.setBonus(calculator.sum(record.getAvgDivAllowance(), record.getAvgOvertime(), record.getAvgSalary(),
                 record.getAvgDirtAllowance()));
         lblBonus3M.setText(fmt.changeToComma(String.valueOf(record.getBonus())));
-
+this.record = record;
     }
 
 
