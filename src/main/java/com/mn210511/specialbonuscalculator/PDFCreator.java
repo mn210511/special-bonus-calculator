@@ -4,6 +4,7 @@ import com.mn210511.specialbonuscalculator.entities.Record;
 import com.mn210511.specialbonuscalculator.entities.RecordFullYearAverage;
 import com.mn210511.specialbonuscalculator.entities.RecordThreeMonth;
 import com.mn210511.specialbonuscalculator.entities.Worktime;
+import com.mn210511.specialbonuscalculator.services.Calculator;
 import com.mn210511.specialbonuscalculator.services.CommaFormatter;
 import javafx.stage.FileChooser;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -25,6 +26,7 @@ import java.util.List;
 public class PDFCreator {
 
     CommaFormatter commaFormatter = new CommaFormatter();
+    Calculator calc = new Calculator();
 
     public static void main(String[] args) {
         PDFCreator test = new PDFCreator();
@@ -152,7 +154,7 @@ public class PDFCreator {
             stream.newLineAtOffset(107.3f, 0);
             stream.showText((String.valueOf(w.getDuration())));
             stream.newLineAtOffset(107.3f, 0);
-            double roundedAvg = Math.round(w.getAverage() * 1000.0) / 1000.0;
+            double roundedAvg = calc.round(w.getAverage());
             stream.showText(commaFormatter.changeToComma(String.valueOf(roundedAvg)));
             stream.endText();
             lineOffset -= -20;
@@ -326,7 +328,7 @@ public class PDFCreator {
         stream.setRenderingMode(RenderingMode.FILL_STROKE);
         stream.showText("Sonderzahlung gesamt:");
         stream.newLineAtOffset(107.3f*4, 0);
-        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getBonus())));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(calc.round(record.getBonus()))));
         stream.endText();
 
 
@@ -381,14 +383,14 @@ public class PDFCreator {
         stream.newLineAtOffset(50, lineOffset);
         stream.showText(headline);
         stream.newLineAtOffset(107.3f, 0);
-        stream.showText(commaFormatter.changeToComma(String.valueOf(tmp[0])));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(calc.round(tmp[0]))));
         stream.newLineAtOffset(107.3f, 0);
-        stream.showText(commaFormatter.changeToComma(String.valueOf(tmp[1])));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(calc.round(tmp[1]))));
         stream.newLineAtOffset(107.3f, 0);
 
-        stream.showText(commaFormatter.changeToComma(String.valueOf(tmp[2])));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(calc.round(tmp[2]))));
         stream.newLineAtOffset(107.3f, 0);
-        stream.showText(commaFormatter.changeToComma(String.valueOf(avgValue)));
+        stream.showText(commaFormatter.changeToComma(String.valueOf(calc.round(avgValue))));
         stream.endText();
     }
 
