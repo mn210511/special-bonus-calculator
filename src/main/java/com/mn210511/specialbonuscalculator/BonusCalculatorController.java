@@ -233,8 +233,10 @@ public class BonusCalculatorController {
         DatePicker beginTmp = new DatePicker();
         DatePicker endTMP = new DatePicker();
         TextField txtHoursTmp = new TextField("0.0");
+        txtHoursTmp.getStyleClass().add("customTextField");
         hourFields[++entryCount] = txtHoursTmp;
         TextField txtDaysTmp = new TextField("0.0");
+        txtDaysTmp.getStyleClass().add("customTextField");
         dayFields[entryCount] = txtDaysTmp;
         tmp.getChildren().addAll(txtHoursTmp, txtDaysTmp, beginTmp, endTMP);
         endDates[entryCount] = endTMP;

@@ -1,0 +1,197 @@
+* {
+    -fx-primary-color: #a6b9cf;
+    -fx-secondary-color: #66a4ad;
+    -fx-third-color: #008e73;
+    -fx-fourth-color: #023b45;
+    -fx-focus-color: #007468;
+}
+
+
+.tab-pane {
+-fx-tab-min-height: 2em;
+    -fx-tab-max-height: 2em;
+}
+
+.tab .tab-label {
+    -fx-background-color: transparent;
+    -fx-font-size: 15;
+    -fx-text-fill: -fx-third-color;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+
+
+
+}
+
+.tab-content-area {
+    -fx-background-color: white;
+}
+
+.tab {
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-style: segments(0.166667em, 0.166667em);
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+}
+
+.tab:top {
+    -fx-background-color: #103447;
+
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: #092235;
+}
+
+
+.tab:hover {
+    -fx-background-color: #103447;
+}
+
+.tab-pane.floating *.tab-header-background {
+    -fx-background-color: 103447;
+}
+
+.h2Label {
+    -fx-font-size: 16;
+    -fx-min-height: 20;
+    -fx-min-width: 200;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-fourth-color;
+    -fx-wrap-text: "true";
+    -fx-word-wrap: break-word;
+
+}
+.h1Label {
+    -fx-font-size: 18;
+    -fx-min-height: 25;
+    -fx-min-width: 200;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-fourth-color;
+    -fx-wrap-text: "true";
+    -fx-word-wrap: break-word;
+
+}
+
+.customTextField {
+    -fx-background-color: -fx-primary-color;
+    -fx-font-size: 15;
+    -fx-min-height: 40;
+    -fx-min-width: 170;
+    -fx-max-width: 170;
+    -fx-background-radius: 25;
+    -fx-border-width: 1px;
+-fx-border-color: -fx-focus-color;
+    -fx-border-radius: 25;
+    -fx-prompt-text-fill: gray;
+    -fx-padding: 5 5 5 5;
+
+
+}
+
+.customTextField:focused {
+ -fx-border-width: 0 0 5 5;
+    -fx-border-radius: 25;
+    -fx-border-color: -fx-focus-color;
+
+}
+.date-picker{
+    -fx-padding: 5 5 5 5 ;
+    -fx-background-color: transparent;
+}
+
+.date-picker > .text-field {
+
+    -fx-background-color: -fx-secondary-color;
+    -fx-font-size: 15;
+    -fx-min-height: 40;
+    -fx-min-width: 170;
+    -fx-max-width: 170;
+
+
+}
+
+
+
+.date-picker .arrow-button {
+    -fx-background-color: -fx-third-color;
+}
+
+
+.button {
+    -fx-background-color: -fx-fourth-color;
+    -fx-font-size: 15;
+    -fx-min-width: 150px;
+    -fx-max-width: 150px;
+    -fx-min-height: 50px;
+    -fx-max-height: 50px;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-insets: -1;
+    -fx-background-insets: -1;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+    -fx-text-fill: -fx-primary-color;
+    -fx-font-weight: bold;
+
+}
+.button:hover {
+    -fx-opacity: 0.7;
+}
+
+.copy-Button {
+    -fx-min-width: 75px;
+    -fx-max-width: 75px;
+    -fx-min-height: 35px;
+    -fx-max-height: 35px;
+    -fx-font-size: 15;
+}
+
+.plus-Button {
+    -fx-font-size: 15;
+    -fx-min-width: 35px;
+    -fx-max-width: 35px;
+    -fx-min-height: 35px;
+    -fx-max-height: 35px;
+}
+
+.check-box .box {
+    -fx-background-color: -fx-primary-color;
+    -fx-border-color: -fx-focus-color;
+    -fx-border-width: 2px;
+    -fx-background-insets: 0;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -fx-fourth-color;
+}
+
+.check-box:selected .mark {
+    -fx-border-color: white;
+}
+.check-box {
+    -fx-font-size: 14;
+
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-fourth-color;
+    -fx-wrap-text: "true";
+    -fx-word-wrap: break-word;
+}
+
+
+.combo-box {
+    -fx-background-color: -fx-secondary-color;
+    -fx-font-size: 15;
+    -fx-min-height: 40;
+    -fx-min-width: 170;
+    -fx-max-width: 170;
+    -fx-border-color: -fx-fourth-color;
+    -fx-background-insets: 0;
+}
+
