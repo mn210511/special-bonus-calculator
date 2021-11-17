@@ -24,11 +24,15 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
 
 public class BonusCalculatorController {
+
+    @FXML
+    private Button btnNew;
 
 
     @FXML
@@ -268,26 +272,27 @@ public class BonusCalculatorController {
         List<Worktime> worktimes = new LinkedList<>();
 
         for (int i = 0; i <= entryCount; i++) {
-            TextField t = (TextField) hourFields[i];
-            DatePicker p = (DatePicker) beginDates[i];
-            DatePicker pEnd = (DatePicker) endDates[i];
-            System.out.println(t.getText());
-            TextField t2 = (TextField) dayFields[i];
-            System.out.println(t2.getText());
-            System.out.println(cbShiftYear.selectedProperty().get());
-            double hours;
-            try {
-                hours = Double.parseDouble(t.getText());
-            } catch (NumberFormatException e) {
-                hours = Double.parseDouble(fmt.changeToDot(t.getText()));
+            if(hourFields[i] != null) {
+                TextField t = (TextField) hourFields[i];
+                DatePicker p = (DatePicker) beginDates[i];
+                DatePicker pEnd = (DatePicker) endDates[i];
+                System.out.println(t.getText());
+                TextField t2 = (TextField) dayFields[i];
+                System.out.println(t2.getText());
+                System.out.println(cbShiftYear.selectedProperty().get());
+                double hours;
+                try {
+                    hours = Double.parseDouble(t.getText());
+                } catch (NumberFormatException e) {
+                    hours = Double.parseDouble(fmt.changeToDot(t.getText()));
+                }
+
+
+                Worktime tmp = new Worktime(hours, Integer.parseInt(t2.getText()), p.getValue(), pEnd.getValue());
+                tmp.setAverage(calculator.averageHours(tmp.getHoursPerWeek(), tmp.getDuration(), record.isShiftyear()));
+                worktimes.add(tmp);
+                avgHourValues.add(tmp.getAverage());
             }
-
-
-            Worktime tmp = new Worktime(hours, Integer.parseInt(t2.getText()), p.getValue(), pEnd.getValue());
-            tmp.setAverage(calculator.averageHours(tmp.getHoursPerWeek(), tmp.getDuration(), record.isShiftyear()));
-            worktimes.add(tmp);
-            avgHourValues.add(tmp.getAverage());
-
         }
         record.setWorktimes(worktimes);
         double summedAvgHourValues = calculator.sumAverageHours(avgHourValues);
@@ -405,6 +410,46 @@ this.record = record;
 
 
         return ret;
+    }
+
+    @FXML
+    protected void onBtnNew () {
+        txtName.setText("");
+        txtCompany.setText("");
+        cbShiftYear.setSelected(false);
+        cbincSalary.setSelected(false);
+        txtSalary.setText("0.0");
+        txtIncSalary.setDisable(true);
+        txtIncSalary.setText("0.0");
+        lblBonus.setText("WERT");
+        lblWR.setText("WERT");
+        lblUZ.setText("WERT");
+        lblAvg.setText("WERT");
+
+cmbWorkModell.getSelectionModel().select(null);
+
+for (int i = entryCount; i > 1; i--) {
+    if (dayFields[i] != null) {
+        vBoxEntrys.getChildren().remove(i);
+        dayFields[i] = null;
+        hourFields[i] = null;
+        beginDates[i] = null;
+        endDates[i] = null;
+    }
+}
+
+
+txtDays1.setText("0");
+txtDays2.setText("0");
+txtHours2.setText("0.0");
+txtHours1.setText("0.0");
+dtpBeginn1.setValue(LocalDate.of(2021, 01, 01));
+dtpBeginn2.setValue(LocalDate.of(2021, 01, 01));
+dtpEnd1.setValue(LocalDate.of(2021, 01, 01));
+dtpEnd2.setValue(LocalDate.of(2021, 01, 01));
+
+        entryCount = 2;
+
     }
 
 }
