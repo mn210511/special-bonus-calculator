@@ -302,7 +302,9 @@ public class BonusCalculatorController {
         double holidayAllowance = calculator.round(calculator.calculateBonus(record.getSalary(), summedAvgHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem()));
         if (cbincSalary.isSelected() == true) {
-            record.setSalary(Double.parseDouble(txtIncSalary.getText()));
+            record.setIncreasedSalary(true);
+            record.setNewSalary(Double.parseDouble(txtIncSalary.getText()));
+
         }
         double christmasAllowance = calculator.round(calculator.calculateBonus(record.getSalary(), summedAvgHourValues,
                 cmbWorkModell.getSelectionModel().getSelectedItem()));
