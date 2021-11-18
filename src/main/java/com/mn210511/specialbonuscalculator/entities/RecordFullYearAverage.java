@@ -16,6 +16,8 @@ public class RecordFullYearAverage extends Record{
     double bonusWR;
     double bonusUB;
     double salary;
+    double newSalary;
+boolean increasedSalary;
 
     public RecordFullYearAverage(String company, String employee, boolean shiftyear, double salary) {
         super(company, employee);
@@ -106,5 +108,21 @@ public class RecordFullYearAverage extends Record{
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public double getNewSalary() {
+        return newSalary;
+    }
+
+    public void setNewSalary(double newSalary) {
+        this.newSalary = newSalary;
+    }
+
+    public void setIncreasedSalary(boolean increasedSalary) {
+        this.increasedSalary = increasedSalary;
+    }
+
+    public boolean isIncreasedSalary() {
+        return increasedSalary;
     }
 }
