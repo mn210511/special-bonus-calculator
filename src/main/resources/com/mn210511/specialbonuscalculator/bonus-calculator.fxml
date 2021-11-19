@@ -42,6 +42,18 @@
                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
+                  <Label prefHeight="39.0" prefWidth="91.0" styleClass="h2Label" text="Firma:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></Label>
+                  <TextField fx:id="txtCompany" promptText="Firmenname" styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </TextField>
                     <Label styleClass="h2Label" text="Name:" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -56,17 +68,7 @@
                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </GridPane.margin>
                     </CheckBox>
-                    <Label maxWidth="206.0" prefHeight="181.0" prefWidth="206.0" styleClass="h2Label" text="Wochenstunden (Basis Vollzeit):" wrapText="true" GridPane.rowIndex="4" />
-                    <ComboBox fx:id="cmbWorkModell" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                        <GridPane.margin>
-                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                        </GridPane.margin>
-                    </ComboBox>
-                    <Button fx:id="btnCalculate" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onCalculateBonus" text="Berechnen" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-                    <Button fx:id="btnAddFields" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onPlusButtonClick" styleClass="plus-Button" text="+" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                     <Label maxWidth="120.0" styleClass="h2Label" text="Gehalt: (Basis Vollzeit):" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                    <TextField fx:id="txtSalary" promptText="Gehalt" styleClass="customTextField" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <children>
                         <Label styleClass="h1Label" text="Schnitt Gesamt:">
@@ -81,56 +83,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label prefHeight="39.0" prefWidth="91.0" styleClass="h2Label" text="Firma:" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </GridPane.margin></Label>
-                  <TextField fx:id="txtCompany" promptText="Firmenname" styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </TextField>
-                  <Button fx:id="btnExportPDF2" alignment="CENTER" mnemonicParsing="false" onAction="#onExportPDF" text="Export PDF" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                    <Label maxWidth="206.0" prefHeight="181.0" prefWidth="206.0" styleClass="h2Label" text="Wochenstunden (Basis Vollzeit):" wrapText="true" GridPane.rowIndex="4" />
+                    <ComboBox fx:id="cmbWorkModell" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <GridPane.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </GridPane.margin>
+                    </ComboBox>
                   <CheckBox fx:id="cbincSalary" mnemonicParsing="false" text="Gehaltserhöhung erhalten" wrapText="true" GridPane.rowIndex="5" />
                   <TextField fx:id="txtIncSalary" promptText="neues Gehalt" styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="10" GridPane.rowSpan="2">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                      <ColumnConstraints hgrow="NEVER" maxWidth="75.0" minWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
-                      <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label styleClass="h1Label" stylesheets="@style.css" text="Weihnachtsremunation:">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin></Label>
-                        <Label styleClass="h1Label" text="Urlaubszuschuss:" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin></Label>
-                        <Label fx:id="lblWR" styleClass="h1Label" text="WERT" GridPane.columnIndex="1" />
-                        <Label fx:id="lblUZ" styleClass="h1Label" text="WERT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="btnCopyChristmasBonus" mnemonicParsing="false" onAction="#onCopyBonus" styleClass="copy-Button" text="copy" GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin></Button>
-                        <Button fx:id="btnCopyHolidayAllowance" mnemonicParsing="false" onAction="#onCopyBonus" styleClass="copy-Button" text="copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                            <Label styleClass="h1Label" text="Bonus gesamt:" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                            </Label>
-                            <Label fx:id="lblBonus" styleClass="h1Label" text="WERT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
                     <VBox fx:id="vBoxEntrys" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="6" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                         <children>
                             <HBox fx:id="hBox1" alignment="CENTER_LEFT">
@@ -202,7 +162,47 @@
                             </HBox>
                         </children>
                     </VBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+                    <Button fx:id="btnAddFields" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onPlusButtonClick" styleClass="plus-Button" text="+" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                    <Button fx:id="btnCalculate" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onCalculateBonus" text="Berechnen" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                    <TextField fx:id="txtSalary" promptText="Gehalt" styleClass="customTextField" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="btnExportPDF2" alignment="CENTER" mnemonicParsing="false" onAction="#onExportPDF" text="Export PDF" GridPane.columnIndex="2" GridPane.rowIndex="10" />
                   <Button fx:id="btnNew" mnemonicParsing="false" onAction="#onBtnNew" text="Neu" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="10" GridPane.rowSpan="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label styleClass="h1Label" stylesheets="@style.css" text="Weihnachtsremunation:">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin></Label>
+                        <Label styleClass="h1Label" text="Urlaubszuschuss:" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin></Label>
+                        <Label fx:id="lblWR" styleClass="h1Label" text="WERT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="lblUZ" styleClass="h1Label" text="WERT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="btnCopyChristmasBonus" mnemonicParsing="false" onAction="#onCopyBonus" styleClass="copy-Button" text="copy" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin></Button>
+                        <Button fx:id="btnCopyHolidayAllowance" mnemonicParsing="false" onAction="#onCopyBonus" styleClass="copy-Button" text="copy" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                            <Label styleClass="h1Label" text="Bonus gesamt:" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                            </Label>
+                            <Label fx:id="lblBonus" styleClass="h1Label" text="WERT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
                 </children>
                 <padding>
                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

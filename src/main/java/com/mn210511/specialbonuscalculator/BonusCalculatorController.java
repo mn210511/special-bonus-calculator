@@ -205,14 +205,7 @@ public class BonusCalculatorController {
         fmt = new CommaFormatter();
         txtIncSalary.setDisable(true);
         // add all the predefined textfield to the array
-        hourFields[entryCount] = txtHours1;
-        dayFields[entryCount] = txtDays1;
-        beginDates[entryCount] = dtpBeginn1;
-        endDates[entryCount] = dtpEnd1;
-        hourFields[++entryCount] = txtHours2;
-        dayFields[entryCount] = txtDays2;
-        beginDates[entryCount] = dtpBeginn2;
-        endDates[entryCount] = dtpEnd2;
+        organiseControls();
         cbincSalary.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -227,6 +220,17 @@ public class BonusCalculatorController {
         cmbWorkModell.getItems().addAll(38.0, 38.5, 40.0);
 
 
+    }
+
+    private void organiseControls() {
+        hourFields[entryCount] = txtHours1;
+        dayFields[entryCount] = txtDays1;
+        beginDates[entryCount] = dtpBeginn1;
+        endDates[entryCount] = dtpEnd1;
+        hourFields[++entryCount] = txtHours2;
+        dayFields[entryCount] = txtDays2;
+        beginDates[entryCount] = dtpBeginn2;
+        endDates[entryCount] = dtpEnd2;
     }
 
 
@@ -306,8 +310,14 @@ public class BonusCalculatorController {
             record.setNewSalary(Double.parseDouble(txtIncSalary.getText()));
 
         }
-        double christmasAllowance = calculator.round(calculator.calculateBonus(record.getSalary(), summedAvgHourValues,
-                cmbWorkModell.getSelectionModel().getSelectedItem()));
+        double christmasAllowance;
+        if (record.isIncreasedSalary()){
+           christmasAllowance  = calculator.round(calculator.calculateBonus(record.getNewSalary(), summedAvgHourValues,
+                    cmbWorkModell.getSelectionModel().getSelectedItem()));
+        } else {
+            christmasAllowance = holidayAllowance;
+        }
+
 
         record.setBonusUB(holidayAllowance);
         record.setBonusWR(christmasAllowance);
@@ -416,6 +426,7 @@ this.record = record;
 
     @FXML
     protected void onBtnNew () {
+
         txtName.setText("");
         txtCompany.setText("");
         cbShiftYear.setSelected(false);
@@ -429,17 +440,24 @@ this.record = record;
         lblAvg.setText("WERT");
 
 cmbWorkModell.getSelectionModel().select(null);
+        System.out.println("entrycount _" + entryCount);
+        int numberStaticItems = 2;
 
-for (int i = entryCount; i > 1; i--) {
-    if (dayFields[i] != null) {
-        vBoxEntrys.getChildren().remove(i);
-        dayFields[i] = null;
-        hourFields[i] = null;
-        beginDates[i] = null;
-        endDates[i] = null;
-    }
+
+  for (int i = vBoxEntrys.getChildren().size()-1; i > numberStaticItems; i--){
+      System.out.println("Vbox size:" + vBoxEntrys.getChildren().size());
+      vBoxEntrys.getChildren().remove(i);
+  }
+
+for (int i = 0; i < dayFields.length; i++) {
+    dayFields[i] = null;
+    hourFields[i]=null;
+    beginDates[i]=null;
+    endDates[i]=null;
 }
 
+entryCount = 0;
+organiseControls();
 
 txtDays1.setText("0");
 txtDays2.setText("0");
@@ -450,7 +468,6 @@ dtpBeginn2.setValue(LocalDate.of(2021, 01, 01));
 dtpEnd1.setValue(LocalDate.of(2021, 01, 01));
 dtpEnd2.setValue(LocalDate.of(2021, 01, 01));
 
-        entryCount = 2;
 
     }
 

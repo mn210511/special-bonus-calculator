@@ -123,6 +123,31 @@ public class PDFCreator {
         stream.newLineAtOffset(0, +20);
         stream.showText(record.getCompany());
         stream.endText();
+
+
+        stream.beginText();
+        stream.setFont(PDType1Font.TIMES_ROMAN, 20);
+        stream.newLineAtOffset(20, mediabox.getUpperRightY() - 100);
+        stream.setRenderingMode(RenderingMode.FILL_STROKE);
+        stream.showText("Gehalt: ");
+        stream.newLineAtOffset(150, 0);
+        stream.setRenderingMode(RenderingMode.FILL);
+        stream.showText(commaFormatter.changeToComma(String.valueOf(record.getSalary())));
+
+        if (record.isIncreasedSalary()) {
+            stream.setRenderingMode(RenderingMode.FILL_STROKE);
+            stream.newLineAtOffset(-150, -20);
+            stream.showText("Gehalt (neu): ");
+            stream.setRenderingMode(RenderingMode.FILL);
+            stream.setFont(PDType1Font.TIMES_ROMAN, 18);
+
+            stream.newLineAtOffset(150, 0);
+            stream.showText(commaFormatter.changeToComma(String.valueOf(record.getNewSalary())));
+        }
+        stream.endText();
+
+
+
         float lineOffset = 210.0f;
 
         //Headlines
