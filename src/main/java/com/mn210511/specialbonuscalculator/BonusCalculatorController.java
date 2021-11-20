@@ -33,6 +33,8 @@ public class BonusCalculatorController {
 
     @FXML
     private Button btnNew;
+    @FXML
+    private GridPane gridInputFields;
 
 
     @FXML
@@ -321,7 +323,7 @@ public class BonusCalculatorController {
 
         record.setBonusUB(holidayAllowance);
         record.setBonusWR(christmasAllowance);
-        record.setBonusTotal(holidayAllowance + christmasAllowance);
+        record.setBonusTotal(calculator.round(holidayAllowance + christmasAllowance));
 
         lblUZ.setText(fmt.changeToComma(String.valueOf(holidayAllowance)));
         lblWR.setText(fmt.changeToComma(String.valueOf(christmasAllowance)));
@@ -469,6 +471,24 @@ dtpEnd1.setValue(LocalDate.of(2021, 01, 01));
 dtpEnd2.setValue(LocalDate.of(2021, 01, 01));
 
 
+    }
+
+
+    @FXML
+    protected void onBtnNew2 () {
+        txtCompany1.setText("");
+        txtName1.setText("");
+
+        for (Node n: gridInputFields.getChildren()
+             ) {
+            if (n instanceof TextField) {
+                ((TextField) n).setText("0,0");
+            } else if (n instanceof Label && ((Label) n).getId()!=null) {
+                ((Label) n).setText("WERT");
+            }
+        }
+
+        lblBonus3M.setText("WERT");
     }
 
 }

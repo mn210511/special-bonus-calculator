@@ -29,6 +29,7 @@ public class RecordThreeMonth extends Record{
     }
 
 
+
     public double getAvgSalary() {
         return avgSalary;
     }

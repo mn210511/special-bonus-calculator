@@ -250,9 +250,9 @@ public class PDFCreator {
         stream.beginText();
         stream.setFont(PDType1Font.COURIER, 15);
         stream.newLineAtOffset(75, 175);
-        stream.showText("Weihnachtsgeld: " + record.getBonusWR() + " €");
+        stream.showText("Weihnachtsgeld: " + commaFormatter.changeToComma(String.valueOf(record.getBonusWR())) + " €");
         stream.newLineAtOffset(0, -25);
-        stream.showText("Urlaubsgeld: " + record.getBonusUB() + " €");
+        stream.showText("Urlaubsgeld: " + commaFormatter.changeToComma(String.valueOf(record.getBonusUB())) + " €");
         stream.endText();
 
         stream.close();
