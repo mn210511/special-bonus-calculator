@@ -7,6 +7,6 @@ module com.mn210511.specialbonuscalculator {
 
     requires org.apache.pdfbox;
 
-    opens com.mn210511.specialbonuscalculator to javafx.fxml;
+    opens com.mn210511.specialbonuscalculator;
     exports com.mn210511.specialbonuscalculator;
 }
